@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    .px_l {
+  padding: 10px;
+  width: 80%;
+  font-size:24px;
+  background-color: white;
+  margin-left: 5%;
+  border: 3px solid green;
+  border-radius: 10px;
+  font-family: "Goudy Bookletter 1911", sans-serif;
+}
+    </style>
+
+<script
+
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+  </script>
+
+</head>
+<body>
+<a href="{% url 'index'  %}?shcool_class=6">6</a>
+<a href="{% url 'index'  %}?shcool_class=7">7</a>
+<a href="{% url 'index'  %}?shcool_class=8">8</a>
+<a href="{% url 'index'  %}?shcool_class=9">9</a>
+<a href="{% url 'index'  %}?shcool_class=10">10</a>
+<a href="{% url 'index'  %}?shcool_class=11">11</a>
+<a>{{m}}</a>
+ <h1 align="center"> Задачи базовой сложности</h1>
+<div class="px_l" style="background-color: LightBlue">
+ {% for t in topp %}
+   {%if t.mett == 1 %}
+    {%if t.tip_top <= 1 %}
+  <a  href="{% url 'probls' t.pk %}">
+         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
+  </a>
+    {%endif%}
+
+{%endif%}
+  {%endfor%}
+</div>
+ <h1 align="center"> Задачи стандартной  сложности</h1>
+<div class="px_l" style="background-color: YellowGreen">
+ {% for t in topp %}
+   {%if t.mett == 1 %}
+    {%if t.tip_top == 2 %}
+  <a  href="{% url 'probls' t.pk %}">
+         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
+  </a>
+    {%endif%}
+ {%endif%}
+
+  {%endfor%}
+</div>
+ <h1 align="center"> Задачи повышенной сложности</h1>
+<div class="px_l" style="background-color: LightSalmon">
+ {% for t in topp %}
+   {%if t.mett == 1 %}
+    {%if t.tip_top == 3 %}
+  <a  href="{% url 'probls' t.pk %}">
+         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
+  </a>
+    {%endif%}
+
+{%endif%}
+  {%endfor%}
+</div>
+
+</body>
+</html>

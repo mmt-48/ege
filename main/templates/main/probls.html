@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+
+    <style>
+
+    .layer1 {
+    margin-left: 10px;
+    font-size: 15pt;
+     width: 100%;
+     }
+.layer2 {
+    margin-left: 10px;
+
+}
+ .px_l {
+  padding: 10px;
+  width: 80%;
+   font-size:24px;
+  background-color: white;
+   border-radius: 10px;
+  margin-left: 5%;
+  border: 3px solid green;
+  font-family: "Goudy Bookletter 1911", sans-serif;
+}
+   #link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+   }
+   #link1 {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+   }
+   .btn-group button {
+   width: 10%;
+
+  height: 20%;
+  background-color: #4CAF50; /* Зеленый фон */
+  border: 1px solid green; /* Зеленый border */
+  color: white; /* Белый текст */
+  margin-left: 5%;
+  margin-bottom: 5%;
+  cursor: pointer; /* Указатель/значок руки */
+  float: left; /* Плавают кнопки бок о бок */
+}
+
+/* Очистить поплавки (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Предотвращение двойных границ */
+}
+
+/* Добавление цвета фона при наведении курсора */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+
+dialog{
+border-radius: 20px;
+background: yellow;
+}
+  </style>
+
+<script>
+    function  lll() {
+    var drawingCanvas = document.getElementById('smile');
+    if(drawingCanvas && drawingCanvas.getContext) {
+     var context = drawingCanvas.getContext('2d');
+     // Рисуем окружность
+     context.strokeStyle = "#000";
+     context.fillStyle = "#fc0";
+     context.beginPath();
+     context.arc(100,100,50,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем левый глаз
+     context.fillStyle = "#fff";
+     context.beginPath();
+     context.arc(84,90,8,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем правый глаз
+     context.beginPath();
+     context.arc(116,90,8,0,Math.PI*2,true);
+     context.closePath();
+     context.stroke();
+     context.fill();
+     // Рисуем рот
+     context.beginPath();
+     context.moveTo(70,115);
+     context.quadraticCurveTo(100,130,130,115);
+     context.quadraticCurveTo(100,150,70,115);
+     context.closePath();
+     context.stroke();
+     context.fill();
+    }
+   }
+  </script>
+
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" href="/static/main/css/jquery.dialog.css">
+	<script src="/static/main/js/jquery.js"></script>
+	<script src="/static/main/js/jquery.dialog.js"></script>
+</head>
+<body>
+<!---//jAlert('Правильно - ','Результат')--->
+<script type="text/javascript">
+ function votvvvvv(r1) {
+    jPrompt('Введите Ваш результат:', '', 'Диалоговое окно', function(r)
+                             {if( r )  {if (r ==r1) {jAlert('<div><img src="/static/main/img/sm.jpg" width="150" alt="ll"></div><h1>Правильно!!!<h1> ',
+                             'Результат')} else { jAlert('<div><img src="/static/main/img/ms.jpg" width="150" alt="ll"></div><h1>Нет, не правильно!!!</h1>  ','Результат')} }
+                             }
+            )
+                   }
+</script>
+
+
+<script type="text/javascript">
+ function votv(r1) {
+    jPrompt('Введите Ваш результат:', function(e,r)
+                             {if( r )  {if (r ==r1) {jAlert('<div><img src="/static/main/img/sm.jpg" width="150" alt="ll"></div><h1>Правильно!!!<h1> ',
+                             'Результат')} else { jAlert('<div><img src="/static/main/img/ms.jpg" width="150" alt="ll"></div><h1>Нет, не правильно!!!</h1>  ','Результат')} }
+                             }
+            )
+                   }
+</script>
+
+
+ <script type="text/javascript">
+
+$(document).ready( function() {
+
+$("#alert_button").click( function() {
+jAlert('Это обычное окно предупреждения', 'Внимание !');
+});
+
+$("#confirm_button").click( function() {
+jConfirm('Можете ли Вы подтвердить ?', 'Диалог подтверждения', function(r) {
+jAlert('Подтверждение: ' + r, 'Результат подтверждения');
+});
+});
+
+$("#prompt_button").click( function() {
+jPrompt('Введите что-нибудь:', 'Ваш текст', 'Диалоговое окно', function(r) {
+if( r ) alert('Вы ввели - ' + r);
+});
+}
+);
+
+$("#alert_button_with_html").click( function() {
+jAlert('Вы можете использовать HTML, такие как <strong>жирный</strong>, <em>курсив</em>, и <u>подчёркнутый</u>!', 'Внимание !');
+});
+
+$(".alert_style_example").click( function() {
+$.alerts.dialogClass = $(this).attr('id'); // set custom style class
+jAlert('Это пользовательский стиль “style_1”', 'Свой стиль окна', function() {
+$.alerts.dialogClass = null; // reset to default
+});
+});
+});
+
+
+</script>
+
+{% autoescape off %}
+{% for b in bimgs %}
+
+ {% for p in probls %}
+
+<a>{{forloop.counter}}</a>
+    <a>Задача вн.ном. {{p.nopor}}</a>
+    <a>Задача N {{p.number_task}}</a>
+    <a>{{p.gkey}}</a>
+    <a>{{request.get_host}}</a>
+    <a>{{p.ege}}</a>
+    <a>{{p.place_ege}}</a>
+    <a>{{p.name_potok}}</a>
+    <a>{{p.source}}</a>
+    <a>{{p.complexity}}</a>
+<div class="px_l">
+    {%if p.condition_txt%}
+      <h4 align="left"> {{p.condition_txt }} </h4>
+    {%endif%}
+
+</div>
+
+
+    <div class="btn-group">
+       <form action="{%url 'task' p.pk %}" >
+          <button style="height:40px;width:200px;border-radius:10px">Решение</button>
+       </form>
+        {%if p.result%}
+
+          <button style="height:40px;width:200px;border-radius:10px" onclick="votv('{{p.result}}')">Проверить свой ответ</button>
+
+        {%endif%}
+        {%if p.result_full%}
+
+          <button style="height:40px;width:200px;border-radius:10px" onclick="jAlert('Ответ <a>'+'{{p.result_full}}'+'<a>','Внимание')">Показать ответ</button>
+
+        {%else%}
+         {%if p.result%}
+
+
+           <button style="height:40px;width:200px;border-radius:10px" onclick="jAlert('Ответ: '+'{{p.result}}','Внимание')" >Показать ответ</button>
+
+
+         {%endif%}
+        {%endif%}
+        {%if p.hint_img%}
+         <form action="{%url 'task' p.pk %}" >
+          <button style="height:40px;width:200px;border-radius:10px">Подсказка</button>
+         </form>
+        {%endif%}
+        </div>
+
+
+  {%endfor%}
+{%endfor%}
+{% endautoescape %}
+
+
+
+</body>
+
+</html>
