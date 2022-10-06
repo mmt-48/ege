@@ -16,59 +16,167 @@
   border-radius: 10px;
   font-family: "Goudy Bookletter 1911", sans-serif;
 }
+ .button {
+      border-radius:10px;
+      background-color:  #4CAF50;
+      border: none;
+      color: white;
+      padding: 20px 34px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 20px;
+      margin: 4px 2px;
+      cursor: pointer;
+      width: 10%;
+      height: 20%;
+      }
+
     </style>
 
-<script
+<script>
 
     <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
   </script>
 
 </head>
 <body>
-<a href="{% url 'index'  %}?shcool_class=6">6</a>
-<a href="{% url 'index'  %}?shcool_class=7">7</a>
-<a href="{% url 'index'  %}?shcool_class=8">8</a>
-<a href="{% url 'index'  %}?shcool_class=9">9</a>
-<a href="{% url 'index'  %}?shcool_class=10">10</a>
-<a href="{% url 'index'  %}?shcool_class=11">11</a>
-<a>{{m}}</a>
- <h1 align="center"> Задачи базовой сложности</h1>
+<h1 align="center">Задачи из реальных вариантов ЕГЭ по профильной математике</h1>
 <div class="px_l" style="background-color: LightBlue">
- {% for t in topp %}
-   {%if t.mett == 1 %}
-    {%if t.tip_top <= 1 %}
-  <a  href="{% url 'probls' t.pk %}">
-         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
-  </a>
-    {%endif%}
+<a align="center" style="font-size: 40px;" href= "{% url 'ege'  %}">Предисловие</a>
+</div>
+<h1 align="center"> Классы</h1>
 
-{%endif%}
+<div class="px_l" style="background-color: LightBlue">
+
+
+<a class="button" href= "{% url 'index'  %}?shcool_class=6">6-ой класс</a>
+<a class="button"  href="{% url 'index'  %}?shcool_class=7">7-ой класс</a>
+<a class="button" href="{% url 'index'  %}?shcool_class=8">8-ой класс</a>
+<a class="button" href="{% url 'index'  %}?shcool_class=9">9-ый класс</a>
+<a class="button" href="{% url 'index'  %}?shcool_class=10">10-ый класс</a>
+<a class="button" href="{% url 'index'  %}?shcool_class=11">11-ый класс</a>
+
+
+     </div>
+
+
+
+ <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
+
+
+<div class="px_l" style="background-color: LightBlue">
+ {% for t in topp1 %}
+  {%if mm == 6 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=6">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+  {%endif%}
+  {%if mm == 7 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=7">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
+  {%if mm == 8%}
+    <a  href="{% url 'probls' t.pk %}?school_class=8">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 9 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=9">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+  {%if mm == 10%}
+    <a  href="{% url 'probls' t.pk %}?school_class=10">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 11 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=11">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
+
   {%endfor%}
 </div>
- <h1 align="center"> Задачи стандартной  сложности</h1>
+ <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
 <div class="px_l" style="background-color: YellowGreen">
- {% for t in topp %}
-   {%if t.mett == 1 %}
-    {%if t.tip_top == 2 %}
-  <a  href="{% url 'probls' t.pk %}">
-         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
-  </a>
-    {%endif%}
- {%endif%}
+ {% for t in topp2 %}
+  {%if mm == 6 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=6">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+  {%endif%}
+  {%if mm == 7 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=7">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
+  {%if mm == 8%}
+    <a  href="{% url 'probls' t.pk %}?school_class=8">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 9 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=9">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+  {%if mm == 10%}
+    <a  href="{% url 'probls' t.pk %}?school_class=10">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 11 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=11">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
 
   {%endfor%}
 </div>
- <h1 align="center"> Задачи повышенной сложности</h1>
+ <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
 <div class="px_l" style="background-color: LightSalmon">
- {% for t in topp %}
-   {%if t.mett == 1 %}
-    {%if t.tip_top == 3 %}
-  <a  href="{% url 'probls' t.pk %}">
-         <h4 align="left"> {{t.number_in_order}} {{t.name_topic}}</h4>
-  </a>
-    {%endif%}
+ {% for t in topp3 %}
 
-{%endif%}
+  {%if mm == 6 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=6">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+  {%endif%}
+  {%if mm == 7 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=7">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
+  {%if mm == 8%}
+    <a  href="{% url 'probls' t.pk %}?school_class=8">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 9 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=9">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+  {%if mm == 10%}
+    <a  href="{% url 'probls' t.pk %}?school_class=10">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+   {%if mm == 11 %}
+    <a  href="{% url 'probls' t.pk %}?school_class=11">
+      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+     </a>
+  {%endif%}
+
+
   {%endfor%}
 </div>
 

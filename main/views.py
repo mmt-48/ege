@@ -10,32 +10,18 @@ def index(request):
     if "DESKTOP" in socket.gethostname():
         form_nopor()
 
-    u = str(request)
+    m = nclass(request)
 
-    k = u.find('_class=')
-    m = '11'
-    if k > 0:
-        m = u[40:41]
-        if m == '1':
-            m = u[40:42]
     mm = int(m)
-    probls = Probl.objects.filter(school_class__lte=mm)
-
-    topp = Topic.objects.filter().order_by("number_in_order")
-
-    for t in topp:
-        t.mett = 0
-        print(t.name_topic)
-        for p in probls:
-
-            if p.topic.name_topic == t.name_topic:
-                print('******', mm, p.topic.name_topic, t.name_topic)
-                t.mett = 1
-                break
-
+    print(mm)
+    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
+    topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
+    topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
     context = {
-        'm': m,
-        'topp': topp
+        'mm': mm,
+        'topp1': topp1,
+        'topp2': topp2,
+        'topp3': topp3
         }
 
     return render(request, 'main/index.html', context=context)
@@ -43,11 +29,13 @@ def index(request):
 
 def probls(request, pkk):
 
-#    probls = Probl.objects.filter(topic=pkk).order_by("complexity")
+    m = nclass(request)
+
+    mm = int(m)
 
     bimgs = Bimg.objects.filter()
 
-    probls = Probl.objects.filter(topic=pkk, number_task__gt=0).order_by("complexity")
+    probls = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
 
     for p in probls:
         p.ege = p.gkey[0:4]
@@ -137,3 +125,31 @@ def form_nopor():
             i = i+1
             t.nopor = i
             t.save()
+
+    topp = Topic.objects.filter()
+    for t in topp:
+        t.mett = 11
+        probl = Probl.objects.filter(topic=t.pk)
+        for p in probl:
+            if p.school_class>0 and p.school_class<t.mett:
+                t.mett = p.school_class
+            if p.school_class == 0:
+                p.school_class = 11
+                p.save()
+            t.save()
+
+def ege(request):
+    return render(request, 'main/ege.html')
+
+def nclass(request):
+
+    u = str(request)
+
+    k = u.find('_class=')
+    m = '11'
+    if k > 0:
+        m = u[k + 7:k + 8]
+        if m == '1':
+            m = u[k + 7:k + 9]
+
+    return m
