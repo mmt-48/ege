@@ -85,39 +85,28 @@ width: 100%;
 
 </head>
 <body>
-{% for t in tsk %}
-   {% autoescape off %}
- <a>Задача N {{t.number_task}}</a>
-<a>Задача вн.ном. {{t.nopor}}</a>
-    <a>{{t.gkey}}</a>
-    <a>{{request.get_host}}</a>
-    <a>{{t.ege}}</a>
-    <a>{{t.place_ege}}</a>
-    <a>{{t.name_potok}}</a>
-    <a>{{t.source}}</a>
-    <a>{{t.complexity}}</a>
 
-<H1 align="center">Условие</H1>
+
+<H1 align="center">ВВОД</H1>
 <div class="px_l">
-    {%if t.condition_txt%}
-      <h4 align="left"> {{t.condition_txt }} </h4>
+    {%if tsk.condition_txt%}
+      <h4 align="left"> {{tsk.condition_txt }} </h4>
     {%endif%}
 
 </div>
-<H1 align="center">Решение</H1>
+<H1 align="center">ВВОД</H1>
+
           <div class="px_l">
-             <h4 align="left"> {{t.solution_txt }} </h4>
+             <h4 align="left"> {{tsk.solution_txt }} </h4>
            </div>
-<div class="btn-group">
- <button style="height:40px;width:200px;border-radius:10px" onclick="window.print()">Печать</button>
-     {%if houm == 1%}
-         <form action="{%url 'vvod' t.pk %}" >
-          <button style="height:40px;width:200px;border-radius:10px">Ввод</button>
-         </form>
-        {%endif%}
-</div>
-   {% endautoescape %}
-  {%endfor%}
+
+<form method="post" action="rvvod {{id}}">
+    {% csrf_token %}
+
+
+    <input value="{{hint}}">
+        <input type="submit" value="Send" />
+    </form>
 
 
 </body>

@@ -3,17 +3,16 @@ from .models import Topic
 from .models import Probl
 from .models import Bimg
 import socket
-from django.conf import settings
 
 
 def index(request):
     if "DESKTOP" in socket.gethostname():
-        form_nopor()
+       form_nopor()
 
     m = nclass(request)
 
     mm = int(m)
-    print(mm)
+
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
@@ -32,7 +31,6 @@ def probls(request, pkk):
     m = nclass(request)
 
     mm = int(m)
-
     bimgs = Bimg.objects.filter()
 
     probls = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
@@ -43,23 +41,51 @@ def probls(request, pkk):
         p.name_potok = name_potok(potok(p.gkey))
 
     context = {
-        'bimgs': bimgs,
-        'probls': probls
+       'bimgs': bimgs,
+       'probls': probls
     }
 
     return render(request, 'main/probls.html', context=context)
 
-
 def task(request, pkk):
-
-    #tsk = Probl.objects.get(pk=pkk)
+    houm = 0
+    if "DESKTOP" in socket.gethostname():
+        houm = 1
 
     tsk = Probl.objects.filter(pk=pkk)
     context = {
+        'houm': houm,
         'tsk': tsk
     }
 
     return render(request, 'main/task.html', context=context)
+
+def rvvod(request, pkk):
+    print('1', request)
+    print('2', pkk)
+    tsk = Probl.objects.get(pk=pkk)
+    hint = tsk.hint_txt
+    id = pkk
+    context = {
+         'id': id,
+         'hint': hint
+    }
+
+    return render(request, 'main/vvod.html', context=context)
+
+
+def vvod(request, pkk):
+
+    tsk = Probl.objects.get(pk=pkk)
+    hint = tsk.hint_txt
+    id = pkk
+    context = {
+         'id': id,
+         'hint': hint
+    }
+
+    return render(request, 'main/vvod.html', context=context)
+
 
 def  zone(gkey):
     if gkey[6] == '_':
@@ -68,12 +94,14 @@ def  zone(gkey):
         u = gkey[5:7]
     return u
 
+
 def potok(gkey):
     if gkey[6] == '_':
         u = gkey[7]
     else:
         u = gkey[8]
     return u
+
 
 def name_potok(potok):
     if potok == '1':
@@ -97,6 +125,7 @@ def name_potok(potok):
 
     return np
 
+
 def name_zone(zone):
     if zone == '1':
         nz = 'Калининградская область'
@@ -113,33 +142,24 @@ def name_zone(zone):
 
     return nz
 
+
 def form_nopor():
-    tsk = Probl.objects.filter()
-    i = 0
-    for t in tsk:
-        if t.nopor > i:
-            i = t.nopor
-
-    for t in tsk:
-        if t.nopor == 0:
-            i = i+1
-            t.nopor = i
-            t.save()
-
     topp = Topic.objects.filter()
     for t in topp:
         t.mett = 11
         probl = Probl.objects.filter(topic=t.pk)
         for p in probl:
-            if p.school_class>0 and p.school_class<t.mett:
+            if p.school_class  > 0 and p.school_class < t.mett:
                 t.mett = p.school_class
             if p.school_class == 0:
                 p.school_class = 11
                 p.save()
             t.save()
 
+
 def ege(request):
     return render(request, 'main/ege.html')
+
 
 def nclass(request):
 
@@ -153,3 +173,13 @@ def nclass(request):
             m = u[k + 7:k + 9]
 
     return m
+
+def tak():
+     probls = Probl.objects.get(pk=229)
+
+     probls.hint_txt = "<p>1)Решение простых показательных уравнений" \
+                      "<p>2)Действия со степенями" \
+                      "<p>3)Степень с отрицательным показателем" \
+                      "<p>4)Решение линейных уравнений"
+
+     probls.save()

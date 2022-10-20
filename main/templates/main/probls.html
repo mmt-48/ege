@@ -185,7 +185,7 @@ $.alerts.dialogClass = null; // reset to default
  {% for p in probls %}
 
 <a>{{forloop.counter}}</a>
-    <a>Задача вн.ном. {{p.nopor}}</a>
+    <a> pk {{p.pk}}</a>
     <a>Задача N {{p.number_task}}</a>
     <a>{{p.gkey}}</a>
     <a>{{request.get_host}}</a>
@@ -225,11 +225,17 @@ $.alerts.dialogClass = null; // reset to default
 
          {%endif%}
         {%endif%}
+         {%if p.hint_txt%}
+
+          <button style="height:40px;width:200px;border-radius:10px" onclick="jAlert('Надо знать: '+'{{p.hint_txt}}','Внимание')">Что надо знать?</button>
+
+        {%endif%}
         {%if p.hint_img%}
          <form action="{%url 'task' p.pk %}" >
           <button style="height:40px;width:200px;border-radius:10px">Подсказка</button>
          </form>
         {%endif%}
+
         </div>
 
 
