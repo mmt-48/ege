@@ -30,7 +30,7 @@ class Probl(models.Model):
     nopor = models.IntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
-        return str(self.nopor)+'_'+self.gkey.strip()+'_'+str(self.number_task)+'klass '+str(self.school_class)+'comp'+str(self.complexity )
+        return str(self.pk)+'_'+self.gkey.strip()+'_'+str(self.number_task)+'klass '+str(self.school_class)+'comp'+str(self.complexity )
 
     class Meta:
         verbose_name = 'probl'
