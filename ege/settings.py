@@ -25,8 +25,7 @@ SECRET_KEY = '=@0z0@@hq@txgw@m4_ow&!4qczrtbm2*1^wn-^i7^4!y_+f=z='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1', 'EXAMAT.RU']
 
 # Application definition
 
