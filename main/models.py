@@ -9,6 +9,13 @@ class Topic(models.Model):
     def __str__(self):
         return self.name_topic
 
+class Themes(models.Model):
+    name_theme = models.CharField(max_length=200, db_index=True)
+    content_theme = models.TextField(blank=True, null=True, default='')
+
+    def __str__(self):
+        return str(self.pk)+'_'+self.name_theme
+
 class Probl(models.Model):
     condition_txt = models.TextField(blank=True, null=True, default='')
     solution_txt = models.TextField(blank=True, null=True, default='')

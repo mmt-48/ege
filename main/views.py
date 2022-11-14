@@ -2,8 +2,26 @@ from django.shortcuts import render
 from .models import Topic
 from .models import Probl
 from .models import Bimg
+from .models import Themes
 import socket
 
+def theme(request,pkk):
+    prb = Probl.objects.get(pk=pkk)
+    hnt = prb.hint_txt
+
+    th = hnt.split("/")
+    thm = []
+    for t in th:
+        tt = Themes.objects.get(pk=int(t))
+
+        u = tt.name_theme.center(100)+tt.content_theme
+        thm.append(u)
+
+    context = {
+        'thm': thm
+    }
+
+    return render(request, 'main/theme.html', context=context)
 
 def index(request):
     if "DESKTOP" in socket.gethostname():

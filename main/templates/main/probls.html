@@ -226,9 +226,10 @@ $.alerts.dialogClass = null; // reset to default
          {%endif%}
         {%endif%}
          {%if p.hint_txt%}
+          <form action="{%url 'theme' p.pk %}" >
+              <button style="height:40px;width:200px;border-radius:10px" >Что надо знать?</button>
 
-          <button style="height:40px;width:200px;border-radius:10px" onclick="jAlert('Надо знать: '+'{{p.hint_txt}}','Внимание')">Что надо знать?</button>
-
+          </form>
         {%endif%}
         {%if p.hint_img%}
          <form action="{%url 'task' p.pk %}" >
@@ -248,3 +249,7 @@ $.alerts.dialogClass = null; // reset to default
 </body>
 
 </html>
+
+############################################################################################################
+## <button style="height:40px;width:200px;border-radius:10px" onclick="jAlert('Надо знать: '+'{{p.hint_txt}}','Внимание')">Что надо знать?</button>##
+##########################################################################################################
