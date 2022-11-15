@@ -37,18 +37,18 @@
 
 </head>
 <body>
-<h1 align="center">Темы</h1>
+<h1 align="center">Темы, знание которых необходимо при решении этой задачи</h1>
 
+{% autoescape off %}
  {% for t in thm %}
-    {% autoescape off %}
-    <a>{{forloop.counter}}</a>
+
    <div class="px_l" style="background-color: LightBlue">
-    <h1> {{t|slice:":100"}} </h1>
+    <h1>Тема {{forloop.counter}}. {{t|slice:":100"}} </h1>
     <h4> {{t|slice:"100:"}} </h4>
 </div>
 
-{% endautoescape %}
   {%endfor%}
+{% endautoescape %}
 
 
 </body>
