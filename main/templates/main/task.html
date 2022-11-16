@@ -110,11 +110,7 @@ width: 100%;
            </div>
 <div class="btn-group">
  <button style="height:40px;width:200px;border-radius:10px" onclick="window.print()">Печать</button>
-     {%if houm == 1%}
-         <form action="{%url 'vvod' t.pk %}" >
-          <button style="height:40px;width:200px;border-radius:10px">Ввод</button>
-         </form>
-        {%endif%}
+     
 </div>
    {% endautoescape %}
   {%endfor%}
