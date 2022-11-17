@@ -30,9 +30,7 @@ def index(request):
     if "DESKTOP" in socket.gethostname():
         form_nopor()
 
-    m = nclass(request)
-
-    mm = int(m)
+    mm = 11
 
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
@@ -47,10 +45,31 @@ def index(request):
     return render(request, 'main/index.html', context=context)
 
 
-def probls(request, pkk):
-    m = nclass(request)
+def gl(request, mm):
 
-    mm = int(m)
+    if "DESKTOP" in socket.gethostname():
+        form_nopor()
+
+    print(mm)
+
+    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
+    topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
+    topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
+    context = {
+        'mm': mm,
+        'topp1': topp1,
+        'topp2': topp2,
+        'topp3': topp3
+    }
+
+    return render(request, 'main/gl.html', context=context)
+
+
+def probls(request, pkkk):
+
+    pkk = pkkk
+    mm = 11
+
     bimgs = Bimg.objects.filter()
 
     pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")

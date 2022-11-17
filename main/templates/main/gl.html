@@ -51,11 +51,46 @@
 
 <a class="button" href= "{% url 'gl' 6 %}">6-ой класс</a>
 <a class="button"  href="{% url 'gl' 7 %}">7-ой класс</a>
-<a class="button" href="{% url 'gl'  8 %}">8-ой класс</a>
-<a class="button" href="{% url 'gl'  9 %}">9-ый класс</a>
-<a class="button" href="{% url 'gl'  10 %}">10-ый класс</a>
-<a class="button" href="{% url 'gl'  11 %}">11-ый класс</a>
+<a class="button" href="{% url 'gl' 8  %}">8-ой класс</a>
+<a class="button" href="{% url 'gl' 9  %}">9-ый класс</a>
+<a class="button" href="{% url 'gl' 10  %}">10-ый класс</a>
+<a class="button" href="{% url 'gl' 11 %}">11-ый класс</a>
      </div>
+
+
+
+ <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
+
+
+<div class="px_l" style="background-color: LightBlue">
+ {% for t in topp1 %}
+     <a  href="{% url 'probls' t.pk %}">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+
+  {%endfor%}
+</div>
+ <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
+<div class="px_l" style="background-color: YellowGreen">
+ {% for t in topp2 %}
+
+    <a  href="{% url 'probls' t.pk %}">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+
+  {%endfor%}
+</div>
+ <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
+<div class="px_l" style="background-color: LightSalmon">
+ {% for t in topp3 %}
+
+
+    <a  href="{% url 'probls' t.pk %}">
+     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+    </a>
+
+  {%endfor%}
+</div>
 
 </body>
 </html>
