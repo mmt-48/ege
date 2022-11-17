@@ -131,4 +131,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 SIGN_OF_VISIT = 0
-# mmt
