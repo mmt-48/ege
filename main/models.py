@@ -14,7 +14,7 @@ class Themes(models.Model):
     content_theme = models.TextField(blank=True, null=True, default='')
 
     def __str__(self):
-        return str(self.pk)+'_'+self.name_theme
+        return str(self.pk)+'_'+str(self.name_theme)
 
 class Probl(models.Model):
     condition_txt = models.TextField(blank=True, null=True, default='')
@@ -37,7 +37,7 @@ class Probl(models.Model):
     nopor = models.IntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
-        return str(self.pk)+'_'+self.gkey.strip()+'_'+str(self.number_task)+'klass '+str(self.school_class)+'comp'+str(self.complexity )
+        return str(self.pk)+'_'+str(self.gkey)+'_'+str(self.number_task)+'klass '+str(self.school_class)+'comp'+str(self.complexity )
 
     class Meta:
         verbose_name = 'probl'
@@ -49,7 +49,7 @@ class Exam(models.Model):
     year = models.IntegerField(blank=True, null=True, default=0)
 
     def __str__(self):
-        return str(10*self.year+self.tip_ege)
+        return str(10*str(self.year)+str(self.tip_ege))
 
 class Bimg(models.Model):
     name = models.CharField(max_length=200, db_index=True)
