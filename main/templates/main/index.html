@@ -49,135 +49,18 @@
 <div class="px_l" style="background-color: LightBlue">
 
 
-<a class="button" href= "{% url 'index'  %}?shcool_class=6">6-ой класс</a>
-<a class="button"  href="{% url 'index'  %}?shcool_class=7">7-ой класс</a>
-<a class="button" href="{% url 'index'  %}?shcool_class=8">8-ой класс</a>
-<a class="button" href="{% url 'index'  %}?shcool_class=9">9-ый класс</a>
-<a class="button" href="{% url 'index'  %}?shcool_class=10">10-ый класс</a>
-<a class="button" href="{% url 'index'  %}?shcool_class=11">11-ый класс</a>
-
-
+<a class="button" href= "{% url 'index'  %}">6-ой класс</a>
+<a class="button"  href="{% url 'index'  %}">7-ой класс</a>
+<a class="button" href="{% url 'index'  %}">8-ой класс</a>
+<a class="button" href="{% url 'index'  %}">9-ый класс</a>
+<a class="button" href="{% url 'index'  %}">10-ый класс</a>
+<a class="button" href="{% url 'index'  %}">11-ый класс</a>
      </div>
 
 
 
  <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
 
-
-<div class="px_l" style="background-color: LightBlue">
- {% for t in topp1 %}
-  {%if mm == 6 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=6">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-    </a>
-  {%endif%}
-  {%if mm == 7 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=7">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-  {%if mm == 8%}
-    <a  href="{% url 'probls' t.pk %}?school_class=8">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 9 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=9">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-  {%if mm == 10%}
-    <a  href="{% url 'probls' t.pk %}?school_class=10">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 11 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=11">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-
-  {%endfor%}
-</div>
- <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
-<div class="px_l" style="background-color: YellowGreen">
- {% for t in topp2 %}
-  {%if mm == 6 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=6">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-    </a>
-  {%endif%}
-  {%if mm == 7 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=7">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-  {%if mm == 8%}
-    <a  href="{% url 'probls' t.pk %}?school_class=8">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 9 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=9">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-  {%if mm == 10%}
-    <a  href="{% url 'probls' t.pk %}?school_class=10">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 11 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=11">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-
-  {%endfor%}
-</div>
- <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
-<div class="px_l" style="background-color: LightSalmon">
- {% for t in topp3 %}
-
-  {%if mm == 6 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=6">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-    </a>
-  {%endif%}
-  {%if mm == 7 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=7">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-  {%if mm == 8%}
-    <a  href="{% url 'probls' t.pk %}?school_class=8">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 9 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=9">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-  {%if mm == 10%}
-    <a  href="{% url 'probls' t.pk %}?school_class=10">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-   {%if mm == 11 %}
-    <a  href="{% url 'probls' t.pk %}?school_class=11">
-      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
-     </a>
-  {%endif%}
-
-
-  {%endfor%}
-</div>
 
 </body>
 </html>
