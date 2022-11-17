@@ -6,7 +6,6 @@ urlpatterns = [
  path('ege/', views.ege, name='ege'),
  path('index/', views.index, name='index'),
  path('probls/<int:pkk>/', views.probls, name='probls'),
- path('vvod/<int:pkk>/', views.vvod, name='vvod'),
  path('task/<int:pkk>/', views.task, name='task'),
  path('theme/<int:pkk>/', views.theme, name='theme')
 ]
