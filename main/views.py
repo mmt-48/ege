@@ -118,6 +118,7 @@ def vvod(request, pkk):
     tsk = Probl.objects.get(pk=pkk)
     hint = tsk.hint_txt
     idd = pkk
+
     context = {
         'id': idd,
         'hint': hint
