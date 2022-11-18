@@ -71,8 +71,9 @@ width: 100%;
 
 </head>
 <body>
+ {% autoescape off %}
 {% for t in tsk %}
-   {% autoescape off %}
+
  <a>Задача N {{t.number_task}}</a>
 <a>Задача вн.ном. {{t.nopor}}</a>
     <a>{{t.gkey}}</a>
@@ -98,9 +99,9 @@ width: 100%;
  <button style="height:40px;width:200px;border-radius:10px" onclick="window.print()">Печать</button>
 
 </div>
-   {% endautoescape %}
-  {%endfor%}
 
+  {%endfor%}
+{% endautoescape %}
 
 </body>
 </html>
