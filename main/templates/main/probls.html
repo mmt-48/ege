@@ -143,41 +143,6 @@ background: yellow;
 </script>
 
 
- <script type="text/javascript">
-
-$(document).ready( function() {
-
-$("#alert_button").click( function() {
-jAlert('Это обычное окно предупреждения', 'Внимание !');
-});
-
-$("#confirm_button").click( function() {
-jConfirm('Можете ли Вы подтвердить ?', 'Диалог подтверждения', function(r) {
-jAlert('Подтверждение: ' + r, 'Результат подтверждения');
-});
-});
-
-$("#prompt_button").click( function() {
-jPrompt('Введите что-нибудь:', 'Ваш текст', 'Диалоговое окно', function(r) {
-if( r ) alert('Вы ввели - ' + r);
-});
-}
-);
-
-$("#alert_button_with_html").click( function() {
-jAlert('Вы можете использовать HTML, такие как <strong>жирный</strong>, <em>курсив</em>, и <u>подчёркнутый</u>!', 'Внимание !');
-});
-
-$(".alert_style_example").click( function() {
-$.alerts.dialogClass = $(this).attr('id'); // set custom style class
-jAlert('Это пользовательский стиль “style_1”', 'Свой стиль окна', function() {
-$.alerts.dialogClass = null; // reset to default
-});
-});
-});
-
-
-</script>
 
 {% autoescape off %}
 {% for b in bimgs %}
@@ -227,15 +192,11 @@ $.alerts.dialogClass = null; // reset to default
         {%endif%}
          {%if p.hint_txt%}
           <form action="{%url 'theme' p.pk %}" >
-              <button style="height:40px;width:200px;border-radius:10px" >Что надо знать</button>
+              <button style="height:40px;width:200px;border-radius:10px" >Что надо знать?</button>
 
           </form>
         {%endif%}
-        {%if p.hint_img%}
-         <form action="{%url 'task' p.pk %}" >
-          <button style="height:40px;width:200px;border-radius:10px">Подсказка</button>
-         </form>
-        {%endif%}
+
 
         </div>
 
