@@ -30,8 +30,8 @@ def index(request):
     if "DESKTOP" in socket.gethostname():
         form_nopor()
 
-    mm = 11
-
+    m = nclass(request)
+    mm = int(m)
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
