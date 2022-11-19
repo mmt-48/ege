@@ -3,6 +3,8 @@ from .models import Topic
 from .models import Probl
 from .models import Bimg
 from .models import Themes
+from .models import Smailic
+
 import socket
 
 
@@ -45,26 +47,6 @@ def index(request):
     return render(request, 'main/index.html', context=context)
 
 
-def gl(request, mm):
-
-    if "DESKTOP" in socket.gethostname():
-        form_nopor()
-
-    print(mm)
-
-    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
-    topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
-    topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
-    context = {
-        'mm': mm,
-        'topp1': topp1,
-        'topp2': topp2,
-        'topp3': topp3
-    }
-
-    return render(request, 'main/gl.html', context=context)
-
-
 def probls(request, pkkk):
 
     pkk = pkkk
@@ -74,12 +56,15 @@ def probls(request, pkkk):
 
     pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
 
+    sm = Smailic.objects.get(pk=1)
+
     for p in pr:
         p.ege = p.gkey[0:4]
         p.place_ege = name_zone(zone(p.gkey))
         p.name_potok = name_potok(potok(p.gkey))
 
     context = {
+        'sm': sm,
         'bimgs': bimgs,
         'probls': pr
     }
