@@ -49,6 +49,8 @@ def index(request):
 
 def probls(request, pkkk):
 
+    tp = Topic.objects.get(pk=pkkk)
+
     pkk = pkkk
     mm = 11
 
@@ -64,6 +66,7 @@ def probls(request, pkkk):
         p.name_potok = name_potok(potok(p.gkey))
 
     context = {
+        'tp': tp,
         'sm': sm,
         'bimgs': bimgs,
         'probls': pr
