@@ -17,14 +17,13 @@
      }
 .layer2 {
     margin-left: 10px;
-
 }
- .px_l {
+.px_l {
   padding: 10px;
   width: 80%;
-   font-size:24px;
+  font-size:24px;
   background-color: white;
-   border-radius: 10px;
+  border-radius: 10px;
   margin-left: 5%;
   border: 3px solid green;
   font-family: "Goudy Bookletter 1911", sans-serif;
@@ -39,11 +38,11 @@
     color: blue;
     text-decoration: underline;
    }
-   #btnt button {color:white}
+#btnt button {color:white}
 
-   .btn-group button {
-   width: 10%;
- font-weight: 900;
+.btn-group button {
+  width: 10%;
+  font-weight: 900;
   height: 20%;
   background-color: #4CAF50; /* Зеленый фон */
   border: 1px solid green; /* Зеленый border */
@@ -75,7 +74,7 @@
 }
 body::before {
 
-		 background:  url("{{ tp.backdrop.url }}") no-repeat center center;
+	 background:  url("{{ tp.backdrop.url }}") no-repeat center center;
 
     background-size: cover;
     content: ' ';
@@ -91,7 +90,7 @@ body::before {
 
          /*end fon*/
 
-     body::before {
+body::before {
     content: '';
     position: fixed; /* Фиксируем на одном месте */
     left: 0; right: 0; /* Вся ширин */
@@ -107,21 +106,25 @@ body::before {
    }
 /*модальное окно*/
  .modalwin {
-                height: 200px;
+                height: 400px;
                 width: 400px;
                 border: 3px outset gray;
                 background: wheat;
                 top: 20%; /* отступ сверху */
                 right: 0;
                 left: 0;
-                font-size: 14px;
+                font-size: 24px;
                 margin: 0 auto;
                 z-index:2; /* поверх всех */
                 display: none;  /* сначала невидим */
                 position: fixed; /* фиксированное позиционирование, окно стабильно при прокрутке */
                 padding: 15px;
-                border: 1px solid #383838;
+                border: 3px solid #383838;
+                border-radius: 10px;
+                font-family: "Goudy Bookletter 1911", sans-serif;
             }
+
+
             #shadow {
                 position: fixed;
                 width:100%;
@@ -138,7 +141,7 @@ body::before {
 
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
 <script type="text/javascript">
-            function showModalWin(t) {
+  function showModalWin(t) {
                 var tt=t;
 
                 var darkLayer = document.createElement('div'); // слой затемнения
@@ -218,19 +221,12 @@ body::before {
                  darkLayer.parentNode.removeChild(darkLayer);
                  xx.style.display = 'none'; // "выключаем" его
                  }
-
-
-
-
-
         return false;
-
     }
 
 </script>
 </head>
 <body>
-
 
 
 {% autoescape off %}
@@ -257,7 +253,6 @@ body::before {
     {%if p.condition_txt%}
       <h4 align="left"> {{p.condition_txt }} </h4>
     {%endif%}
-
 </div>
 
 
@@ -286,28 +281,27 @@ body::before {
 
 <!-- Наше модальное всплывающее окно -->
         <div style="text-align: center" id="popupWin{{forloop.counter}}" class="modalwin">
-            <h2> РЕЗУЛЬТАТ </h2>
+            <h4> РЕЗУЛЬТАТ </h4>
             {%if p.result_full%}
-             <h2> {{p.result_full}} </h2>
+             <h4> {{p.result_full}} </h4>
             {%else%}
               {%if p.result%}
-                <h2> {{p.result}} </h2>
+                <h4> {{p.result}} </h4>
               {%endif%}
             {%endif%}
 
             <form>
-                <input type="button" id="btnt{{forloop.counter}}" value="OK">
+                <input type="button" style="font-size: 24pt" id="btnt{{forloop.counter}}" value="OK">
             </form>
-
         </div>
 
 <!-- Наше 2-ое модальное всплывающее окно -->
         <div style="text-align: center" id="popupWinv{{forloop.counter}}" class="modalwin">
-            <h2> ВВЕДИТЕ ВАШ РЕЗУЛЬТАТ </h2>
+            <h4> ВВЕДИТЕ ВАШ РЕЗУЛЬТАТ </h4>
             <form>
-                <input name='res' id="res{{forloop.counter}}" autofocus>
-                <input type="button" id="btntt{{forloop.counter}}" value="OK">
-                <input  type="button" id="btnttt{{forloop.counter}}" value="Cancel">
+                <input name='res' style="font-size: 24pt" id="res{{forloop.counter}}" autofocus>
+                <input type="button" style="font-size: 24pt" id="btntt{{forloop.counter}}" value="OK">
+                <input  type="button" style="font-size: 24pt" id="btnttt{{forloop.counter}}" value="Cancel">
             </form>
 
         </div>
@@ -315,11 +309,11 @@ body::before {
 <!-- Наше 3 модальное всплывающее окно -->
         <div style="text-align: center" id="popupWinp{{forloop.counter}}" class="modalwin">
             <div><img src="{{sm.sm.url}}" width="150" alt="ll"></div>
-            <h2> ПРАВИЛЬНО!!! </h2>
+            <h4> ПРАВИЛЬНО!!! </h4>
 
 
             <form>
-                <input type="button" id="btntp{{forloop.counter}}" value="OK">
+                <input type="button" style="font-size: 24pt" id="btntp{{forloop.counter}}" value="OK">
             </form>
 
         </div>
@@ -327,11 +321,11 @@ body::before {
 <!-- Наше 4 модальное всплывающее окно -->
         <div style="text-align: center" id="popupWinn{{forloop.counter}}" class="modalwin">
             <div><img src="{{sm.ms.url}}" width="150" alt="ll"></div>
-            <h2> НЕПРАВИЛЬНО !!! </h2>
+            <h4> НЕПРАВИЛЬНО !!! </h4>
 
 
             <form>
-                <input type="button" id="btntn{{forloop.counter}}" value="OK">
+                <input type="button" style="font-size: 24pt" id="btntn{{forloop.counter}}" value="OK">
             </form>
 
         </div>

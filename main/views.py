@@ -10,6 +10,7 @@ import socket
 
 def theme(request, pkk):
     prb = Probl.objects.get(pk=pkk)
+    tp = Topic.objects.get(pk=prb.topic_id)
     hnt = prb.hint_txt
 
     th = hnt.split("/")
@@ -21,6 +22,7 @@ def theme(request, pkk):
         thm.append(u)
 
     context = {
+        'tp': tp,
         'thm': thm
     }
 
@@ -80,8 +82,11 @@ def task(request, pkk):
     if "DESKTOP" in socket.gethostname():
         houm = 1
 
-    tsk = Probl.objects.filter(pk=pkk)
+    tsk = Probl.objects.get(pk=pkk)
+    tp = Topic.objects.get(pk=tsk.topic_id)
+
     context = {
+        'tp':tp,
         'houm': houm,
         'tsk': tsk
     }

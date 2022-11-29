@@ -32,6 +32,42 @@
       width: 10%;
       height: 20%;
       }
+       body{
+  position: relative;
+}
+body::before {
+
+		 background:  url("{{ tp.backdrop.url }}") no-repeat center center;
+
+    background-size: cover;
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
+    filter: opacity(50%);
+}
+
+         /*end fon*/
+
+     body::before {
+    content: '';
+    position: fixed; /* Фиксируем на одном месте */
+    left: 0; right: 0; /* Вся ширин */
+    top: 0; bottom: 0; /* Вся высота */
+    z-index: -1; /* Фон ниже текста */
+    /* Параметры фона */
+
+    /*filter: blur(10px);  Размытие */
+   }
+   body {
+    color: black; /* Цвет текста */
+
+   }
+
 
     </style>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
