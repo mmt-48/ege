@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Темы</title>
     <style>
-    .px_l {
+ .px_l {
   padding: 10px;
   width: 80%;
   font-size:24px;
@@ -36,10 +36,8 @@
   position: relative;
 }
 body::before {
-
-		 background:  url("{{ tp.backdrop.url }}") no-repeat center center;
-
-    background-size: cover;
+   background:  url("{{ tp.backdrop.url }}") no-repeat center center;
+   background-size: cover;
     content: ' ';
     height: 100%;
     left: 0;
@@ -52,8 +50,7 @@ body::before {
 }
 
          /*end fon*/
-
-     body::before {
+body::before {
     content: '';
     position: fixed; /* Фиксируем на одном месте */
     left: 0; right: 0; /* Вся ширин */
@@ -74,8 +71,9 @@ body::before {
 
 </head>
 <body>
+<div class="px_l" style="background-color: LightBlue">
 <h1 align="center">Темы, знание которых необходимо при решении этой задачи</h1>
-
+</div>
 {% autoescape off %}
  {% for t in thm %}
 

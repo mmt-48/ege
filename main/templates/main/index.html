@@ -6,9 +6,43 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
+    body{
+  position: relative;
+}
+body::before {
+    background:  url("{{ tp.backdrop.url }}") no-repeat center center;
+    background-size: cover;
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
+    filter: opacity(50%);
+}
+
+         /*end fon*/
+
+body::before {
+    content: '';
+    position: fixed; /* Фиксируем на одном месте */
+    left: 0; right: 0; /* Вся ширин */
+    top: 0; bottom: 0; /* Вся высота */
+    z-index: -1; /* Фон ниже текста */
+    /* Параметры фона */
+
+    /*filter: blur(10px);  Размытие */
+   }
+   body {
+    color: black; /* Цвет текста */
+
+   }
+
     .px_l {
   padding: 10px;
-  width: 80%;
+  width:80%;
   font-size:24px;
   background-color: white;
   margin-left: 5%;
@@ -56,14 +90,21 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/91289361" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-<h1 align="center">Задачи из реальных вариантов ЕГЭ по профильной математике</h1>
 <div class="px_l" style="background-color: LightBlue">
+<h1 align="center">Задачи из реальных вариантов ЕГЭ по профильной математике</h1>
+</div>
+    <p>
+    <p>
+<div class="px_l" style="background-color: LightBlue"  ;>
 <a  style="font-size: 40px;" href= "{% url 'ege'  %}">Предисловие</a>
 </div>
-<h1 align="center"> Классы</h1>
+<p>
+<p>
 
 <div class="px_l" style="background-color: LightBlue">
+
+
+ <h1 align="center" > Классы</h1>
 
 <a class="button" href= "{% url 'index'  %}?shcool_class=6">6-ой класс</a>
 <a class="button"  href="{% url 'index'  %}?shcool_class=7">7-ой класс</a>
@@ -72,14 +113,14 @@
 <a class="button" href="{% url 'index'   %}?shcool_class=10">10-ый класс</a>
 <a class="button" href="{% url 'index'  %}?shcool_class=11">11-ый класс</a>
      </div>
-
-
-
- <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
+<p>
+<p>
 
 
 <div class="px_l" style="background-color: LightBlue">
+    <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
  {% for t in topp1 %}
+
   {%if mm == 6 %}
     <a  href="{% url 'probls' t.pk %}?school_class=6">
      <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
@@ -115,8 +156,11 @@
 
   {%endfor%}
 </div>
- <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
-<div class="px_l" style="background-color: YellowGreen">
+<p>
+
+<p>
+<div class="px_l" style="background-color: LightBlue">
+    <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
  {% for t in topp2 %}
   {%if mm == 6 %}
     <a  href="{% url 'probls' t.pk %}?school_class=6">
@@ -153,8 +197,11 @@
 
   {%endfor%}
 </div>
- <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
-<div class="px_l" style="background-color: LightSalmon">
+<p>
+
+<p>
+<div class="px_l" style="background-color: LightBlue">
+    <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
  {% for t in topp3 %}
 
   {%if mm == 6 %}
