@@ -33,9 +33,9 @@
   width: 10%;
   font-weight: 900;
   height: 20%;
-  background-color: #4CAF50; /* Зеленый фон */
+  background-color: green; /* Зеленый фон */
   border: 1px solid green; /* Зеленый border */
-  color: white; /* Белый текст */
+  color: #fff; /* Белый текст */
   margin-left: 5%;
   margin-bottom: 5%;
   cursor: pointer; /* Указатель/значок руки */
@@ -245,17 +245,16 @@ function setFocus()
 
 <div class="px_l">
 
-    <a>{{forloop.counter}}</a>
-    <a> pk {{p.pk}}</a>
-    <a>Задача N {{p.number_task}}</a>
-    <a>{{p.gkey}}</a>
+    <a>{{forloop.counter}}.</a>
+    <a>Внутренний код {{p.pk}}.</a>
+    <a>Номер в варианте {{p.number_task}}.</a>
 
-    <a>{{p.ege}}</a>
-    <a>{{p.place_ege}}</a>
-    <a>{{p.name_potok}}</a>
-    <a>{{p.source}}</a>
-    <a>{{p.school_class}}</a>
-    <a>{{p.complexity}}</a>
+    <a>Год {{p.ege}}.</a>
+    <a>{{p.place_ege}}.</a>
+    <a>{{p.name_potok}}.</a>
+    <a>Источник {{p.source}}.</a>
+    <a>Класс {{p.school_class}}.</a>
+
 </div>
 
 <div class="px_l">

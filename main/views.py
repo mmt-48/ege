@@ -87,6 +87,12 @@ def task(request, pkk):
     tsk = Probl.objects.get(pk=pkk)
     tp = Topic.objects.get(pk=tsk.topic_id)
 
+
+    tsk.ege = tsk.gkey[0:4]
+    tsk.place_ege = name_zone(zone(tsk.gkey))
+    tsk.name_potok = name_potok(potok(tsk.gkey))
+
+
     context = {
         'tp':tp,
         'houm': houm,
