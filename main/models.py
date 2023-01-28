@@ -14,6 +14,7 @@ class Topic(models.Model):
     name_topic = models.CharField(max_length=200, db_index=True)
     number_in_order = models.IntegerField(default=0)
     mett = models.IntegerField(default=0)
+    mett1 = models.IntegerField(default=0)
     tip_top = models.IntegerField(blank=True, null=True, default=0)
     backdrop = models.ImageField(upload_to='smile', default='')
 
@@ -48,6 +49,7 @@ class Probl(models.Model):
     date = models.DateTimeField(blank=True, null=True)
     school_class = models.IntegerField(blank=True, null=True, default=0)
     nopor = models.IntegerField(blank=True, null=True, default=0)
+    exam_tip = models.IntegerField(blank=True, null=True, db_index=True, default=0)
 
     def __str__(self):
         return str(self.pk) + '_' + str(self.gkey) + str(self.hint_txt)

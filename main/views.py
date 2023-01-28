@@ -30,37 +30,48 @@ def theme(request, pkk):
 
 
 def index(request):
-
-    if "DESKTOP" in socket.gethostname():
-        form_nopor()
     tp = Topic.objects.get(pk=1)
+    e_t = extip(request)
+    e_tt = int(e_t)
+    if "DESKTOP" in socket.gethostname():
+        form_nopor(e_tt)
 
     m = nclass(request)
     mm = int(m)
+    m6_11 = [6, 7, 8, 9, 10, 11]
+    topp = Topic.objects.filter(mett1__lte=mm,mett1__gte=1).order_by("number_in_order")
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
     context = {
         'tp': tp,
         'mm': mm,
+        'e_tt': e_tt,
+        'm6_11':m6_11,
+        'topp': topp,
         'topp1': topp1,
         'topp2': topp2,
         'topp3': topp3
-    }
+        }
 
     return render(request, 'main/index.html', context=context)
 
 
-def probls(request, pkkk):
+def probls(request, pkkk, mm, e_tt):
 
     tp = Topic.objects.get(pk=pkkk)
 
     pkk = pkkk
-    mm = 11
+
 
     bimgs = Bimg.objects.filter()
 
-    pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
+   # pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
+    if e_tt == 1:
+        pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=4).order_by("complexity")
+
+    if e_tt == 2:
+        pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=8, exam_tip__gte=5).order_by("complexity")
 
     sm = Smailic.objects.get(pk=1)
 
@@ -70,6 +81,7 @@ def probls(request, pkkk):
         p.name_potok = name_potok(potok(p.gkey))
 
     context = {
+        'mm': mm,
         'tp': tp,
         'sm': sm,
         'bimgs': bimgs,
@@ -129,19 +141,11 @@ def vvod(request, pkk):
 
 
 def zone(gkey):
-    if gkey[6] == '_':
-        u = gkey[5]
-    else:
-        u = gkey[5:7]
-    return u
+    return gkey.split('_')[1]
 
 
 def potok(gkey):
-    if gkey[6] == '_':
-        u = gkey[7]
-    else:
-        u = gkey[8]
-    return u
+    return gkey.split('_')[2]
 
 
 def name_potok(potokk):
@@ -183,20 +187,35 @@ def name_zone(zonne):
 
     return nz
 
-
-def form_nopor():
-
+def form_nopor(e_tt):
     topp = Topic.objects.filter()
     for t in topp:
-        t.mett = 11
+        t.mett = 12
+        t.mett1 = 12
+
+    for t in topp:
         pr = Probl.objects.filter(topic=t.pk)
+
         for p in pr:
-            if (p.school_class > 0) and (p.school_class < t.mett):
+            if p.exam_tip != int(potok(p.gkey)):
+                p.exam_tip = int(potok(p.gkey))
+                p.save()
+
+            if (p.school_class > 0) and (p.school_class < t.mett) and (p.exam_tip <= 4):
                 t.mett = p.school_class
+            if (p.school_class > 0) and (p.school_class < t.mett1) and (p.exam_tip >= 5) and (p.exam_tip <= 8):
+                t.mett1 = p.school_class
+
             if p.school_class == 0:
                 p.school_class = 11
                 p.save()
-            t.save()
+        if t.mett == 12:
+            t.mett = 0
+        if t.mett1 == 12:
+            t.mett1 = 0
+
+        t.save()
+
 
 
 def ege(request):
@@ -212,5 +231,15 @@ def nclass(request):
         m = u[k + 7:k + 8]
         if m == '1':
             m = u[k + 7:k + 9]
+
+    return m
+
+def extip(request):
+    u = str(request)
+
+    k = u.find('ex_tip=')
+    m = '1'
+    if k > 0:
+        m = u[k + 7:k + 8]
 
     return m

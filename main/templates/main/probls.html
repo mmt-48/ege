@@ -242,7 +242,7 @@ function setFocus()
 {% for b in bimgs %}
 
  {% for p in probls %}
-
+{%if p.school_class <= mm  %}
 <div class="px_l">
 
     <a>{{forloop.counter}}.</a>
@@ -265,9 +265,6 @@ function setFocus()
 
 
     <div class="btn-group">
-        <form action="{%url 'task' p.pk %}" >
-          <button style="height:40px;width:200px;border-radius:10px">Решение</button>
-        </form>
         {%if p.result%}
           <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result}}')">Проверить свой ответ</button>
         {%endif%}
@@ -283,6 +280,9 @@ function setFocus()
               <button style="height:40px;width:200px;border-radius:10px" >Что надо знать?</button>
           </form>
         {%endif%}
+        <form action="{%url 'task' p.pk %}" >
+          <button style="height:40px;width:200px;border-radius:10px">Решение</button>
+        </form>
 
 
         </div>
@@ -340,7 +340,7 @@ function setFocus()
         </div>
 
 
-
+{%endif%}
   {%endfor%}
 {%endfor%}
 
