@@ -73,12 +73,19 @@ def probls(request, pkkk, mm, e_tt):
     if e_tt == 2:
         pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=8, exam_tip__gte=5).order_by("complexity")
 
+
     sm = Smailic.objects.get(pk=1)
 
     for p in pr:
         p.ege = p.gkey[0:4]
         p.place_ege = name_zone(zone(p.gkey))
         p.name_potok = name_potok(potok(p.gkey))
+        if p.result:
+            pp = p.result
+            pp = pp.replace('\\', '')
+            pp = pp.replace('(', '')
+            pp = pp.replace(')', '')
+            p.result_full = pp
 
     context = {
         'mm': mm,
@@ -86,6 +93,7 @@ def probls(request, pkkk, mm, e_tt):
         'sm': sm,
         'bimgs': bimgs,
         'probls': pr
+
     }
 
     return render(request, 'main/probls.html', context=context)

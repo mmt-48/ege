@@ -266,16 +266,12 @@ function setFocus()
 
     <div class="btn-group">
         {%if p.result%}
-          <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result}}')">Проверить свой ответ</button>
+          <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result_full}}')">Проверить свой ответ</button>
         {%endif%}
-        {%if p.result_full%}
+        {%if p.result_full or p.result%}
           <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWin({{forloop.counter}})">Показать ответ</button>
-        {%else%}
-         {%if p.result%}
-           <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWin({{forloop.counter}})" >Показать ответ</button>
-         {%endif%}
         {%endif%}
-         {%if p.hint_txt%}
+        {%if p.hint_txt%}
           <form action="{%url 'theme' p.pk %}" >
               <button style="height:40px;width:200px;border-radius:10px" >Что надо знать?</button>
           </form>
@@ -290,11 +286,11 @@ function setFocus()
 <!-- Наше модальное всплывающее окно -->
         <div style="text-align: center" id="popupWin{{forloop.counter}}" class="modalwin">
             <h4> РЕЗУЛЬТАТ </h4>
-            {%if p.result_full%}
-             <h4> {{p.result_full}} </h4>
+            {%if p.result%}
+             <h4> {{p.result}} </h4>
             {%else%}
-              {%if p.result%}
-                <h4> {{p.result}} </h4>
+              {%if p.result_full%}
+                <h4> {{p.result_full}} </h4>
               {%endif%}
             {%endif%}
 
