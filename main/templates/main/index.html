@@ -62,8 +62,8 @@ body::before {
       font-size: 20px;
       margin: 4px 2px;
       cursor: pointer;
-      width: 10%;
-      height: 20%;
+      width: 5%;
+      height: 10%;
       }
 
 
@@ -92,10 +92,10 @@ body::before {
 <noscript><div><img src="https://mc.yandex.ru/watch/91289361" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <div class="px_l" style="background-color: LightBlue">
-<h1 align="center">Задачи из реальных вариантов ЕГЭ по математике (базовый и профильный уровни)</h1>
+<h2 align="center">Задачи из реальных вариантов ЕГЭ по математике (базовый и профильный уровни)</h2>
 </div>
     <p>
-    <p>
+
 <div class="px_l" style="background-color: LightBlue"  ;>
 <a  style="font-size: 40px;" href= "{% url 'ege'  %}">Предисловие</a>
 </div>
@@ -103,17 +103,18 @@ body::before {
 <p>
 
 <div class="px_l" style="background-color: LightBlue">
- <h1 align="center" > Тип экзамена</h1>
+ <font size="10px"> Тип экзамена:</font>
 {%if e_tt == 1%}
   <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class={{mm}},ex_tip=1">Профиль</a>
   <a class="button"  href="{% url 'index'  %}?shcool_class={{mm}},ex_tip=2">База</a>
 {%endif%}
 {%if e_tt == 2%}
+
   <a class="button"  href="{% url 'index'  %}?shcool_class={{mm}},ex_tip=1">Профиль</a>
   <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class={{mm}},ex_tip=2">База</a>
 {%endif%}
-
-    <h1 align="center" > Классы</h1>
+<p>
+    <font size="10px" > Классы:</font>
     {%for m in m6_11%}
 {%if mm == m %}
  <a class="button" style="border: 4px solid red" href= "{% url 'index'  %}?shcool_class={{m}},ex_tip={{e_tt}}">Класс {{m}}</a>
