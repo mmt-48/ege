@@ -38,8 +38,14 @@ def index(request):
 
     m = nclass(request)
     mm = int(m)
+
     m6_11 = [6, 7, 8, 9, 10, 11]
-    topp = Topic.objects.filter(mett1__lte=mm,mett1__gte=1).order_by("number_in_order")
+    if e_tt == 3:
+        m6_11 = [6, 7, 8, 9]
+        if mm > 9:
+            mm = 9
+    toppp = Topic.objects.filter(mett2__lte=mm, mett2__gte=1).order_by("number_in_order")
+    topp = Topic.objects.filter(mett1__lte=mm, mett1__gte=1).order_by("number_in_order")
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
@@ -47,7 +53,8 @@ def index(request):
         'tp': tp,
         'mm': mm,
         'e_tt': e_tt,
-        'm6_11':m6_11,
+        'm6_11': m6_11,
+        'toppp': toppp,
         'topp': topp,
         'topp1': topp1,
         'topp2': topp2,
@@ -63,7 +70,6 @@ def probls(request, pkkk, mm, e_tt):
 
     pkk = pkkk
 
-
     bimgs = Bimg.objects.filter()
 
    # pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
@@ -73,6 +79,8 @@ def probls(request, pkkk, mm, e_tt):
     if e_tt == 2:
         pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=8, exam_tip__gte=5).order_by("complexity")
 
+    if e_tt == 3:
+        pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=12, exam_tip__gte=9).order_by("complexity")
 
     sm = Smailic.objects.get(pk=1)
 
@@ -147,32 +155,37 @@ def vvod(request, pkk):
 
     return render(request, 'main/vvod.html', context=context)
 
-
 def zone(gkey):
     return gkey.split('_')[1]
-
 
 def potok(gkey):
     return gkey.split('_')[2]
 
-
 def name_potok(potokk):
     if potokk == '1':
-        np = 'Профильный-основная волна'
+        np = 'ЕГЭ профильный-основная волна'
     elif potokk == '2':
-        np = 'Профильный -досрочная волна'
+        np = 'ЕГЭ профильный -досрочная волна'
     elif potokk == '3':
-        np = 'Профильный-резервный день основной волны'
+        np = 'ЕГЭ профильный-резервный день основной волны'
     elif potokk == '4':
-        np = 'Профильный-резервный день досрочной волны'
+        np = 'ЕГЭ профильный-резервный день досрочной волны'
     elif potokk == '5':
-        np = 'Базовый-основная волна'
+        np = 'ЕГЭ базовый-основная волна'
     elif potokk == '6':
-        np = 'Базовый -досрочная волна'
+        np = 'ЕГЭ базовый-досрочная волна'
     elif potokk == '7':
-        np = 'Базовый -резервный день основной волны'
+        np = 'ЕГЭ базовый -резервный день основной волны'
     elif potokk == '8':
-        np = 'Базовый-резервный день досрочной волны'
+        np = 'ЕГЭ базовый-резервный день досрочной волны'
+    elif potokk == '9':
+        np = 'ОГЭ-основная волна'
+    elif potokk == '10':
+        np = 'ОГЭ -досрочная волна'
+    elif potokk == '11':
+        np = 'ОГЭ -резервный день основной волны'
+    elif potokk == '12':
+        np = 'ОГЭ-резервный день досрочной волны'
     else:
         np = '???'
 
@@ -200,6 +213,7 @@ def form_nopor(e_tt):
     for t in topp:
         t.mett = 12
         t.mett1 = 12
+        t.mett2 = 10
 
     for t in topp:
         pr = Probl.objects.filter(topic=t.pk)
@@ -214,16 +228,22 @@ def form_nopor(e_tt):
             if (p.school_class > 0) and (p.school_class < t.mett1) and (p.exam_tip >= 5) and (p.exam_tip <= 8):
                 t.mett1 = p.school_class
 
+            if (p.school_class > 0) and (p.school_class < t.mett2) and (p.exam_tip >= 9) and (p.exam_tip <= 12):
+                t.mett2 = p.school_class
+
             if p.school_class == 0:
                 p.school_class = 11
+                if e_tt == 3:
+                    p.school_class = 9
                 p.save()
         if t.mett == 12:
             t.mett = 0
         if t.mett1 == 12:
             t.mett1 = 0
+        if t.mett2 == 10:
+            t.mett2 = 0
 
         t.save()
-
 
 
 def ege(request):

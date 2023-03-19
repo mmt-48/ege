@@ -15,6 +15,7 @@ class Topic(models.Model):
     number_in_order = models.IntegerField(default=0)
     mett = models.IntegerField(default=0)
     mett1 = models.IntegerField(default=0)
+    mett2 = models.IntegerField(default=0)
     tip_top = models.IntegerField(blank=True, null=True, default=0)
     backdrop = models.ImageField(upload_to='smile', default='')
 
