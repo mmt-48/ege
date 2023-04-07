@@ -12,10 +12,14 @@ class Smailic(models.Model):
 
 class Topic(models.Model):
     name_topic = models.CharField(max_length=200, db_index=True)
+    name_topic1 = models.CharField(max_length=200, db_index=True, default='')
+    name_topic2 = models.CharField(max_length=200, db_index=True, default='')
+    name_topic3 = models.CharField(max_length=200, db_index=True,  default='')
     number_in_order = models.IntegerField(default=0)
     mett = models.IntegerField(default=0)
     mett1 = models.IntegerField(default=0)
     mett2 = models.IntegerField(default=0)
+    mett3 = models.IntegerField(default=0)
     tip_top = models.IntegerField(blank=True, null=True, default=0)
     backdrop = models.ImageField(upload_to='smile', default='')
 

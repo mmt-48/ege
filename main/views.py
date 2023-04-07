@@ -44,6 +44,7 @@ def index(request):
         m6_11 = [6, 7, 8, 9]
         if mm > 9:
             mm = 9
+    topppp = Topic.objects.filter(mett3__lte=mm, mett3__gte=1).order_by("number_in_order")
     toppp = Topic.objects.filter(mett2__lte=mm, mett2__gte=1).order_by("number_in_order")
     topp = Topic.objects.filter(mett1__lte=mm, mett1__gte=1).order_by("number_in_order")
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
@@ -54,6 +55,7 @@ def index(request):
         'mm': mm,
         'e_tt': e_tt,
         'm6_11': m6_11,
+        'topppp': topppp,
         'toppp': toppp,
         'topp': topp,
         'topp1': topp1,
@@ -81,6 +83,10 @@ def probls(request, pkkk, mm, e_tt):
 
     if e_tt == 3:
         pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=12, exam_tip__gte=9).order_by("complexity")
+
+    if e_tt == 4:
+        pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=13, exam_tip__gte=13).order_by("complexity")
+
 
     sm = Smailic.objects.get(pk=1)
 
@@ -186,6 +192,8 @@ def name_potok(potokk):
         np = 'ОГЭ -резервный день основной волны'
     elif potokk == '12':
         np = 'ОГЭ-резервный день досрочной волны'
+    elif potokk == '13':
+        np = 'ДВИ'
     else:
         np = '???'
 
@@ -214,6 +222,7 @@ def form_nopor(e_tt):
         t.mett = 12
         t.mett1 = 12
         t.mett2 = 10
+        t.mett3 = 12
 
     for t in topp:
         pr = Probl.objects.filter(topic=t.pk)
@@ -231,6 +240,9 @@ def form_nopor(e_tt):
             if (p.school_class > 0) and (p.school_class < t.mett2) and (p.exam_tip >= 9) and (p.exam_tip <= 12):
                 t.mett2 = p.school_class
 
+            if (p.school_class > 0) and (p.school_class < t.mett3) and (p.exam_tip == 13):
+                t.mett3 = p.school_class
+
             if p.school_class == 0:
                 p.school_class = 11
                 if e_tt == 3:
@@ -242,6 +254,8 @@ def form_nopor(e_tt):
             t.mett1 = 0
         if t.mett2 == 10:
             t.mett2 = 0
+        if t.mett3 == 12:
+            t.mett3 = 0
 
         t.save()
 
