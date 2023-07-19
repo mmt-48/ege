@@ -57,7 +57,7 @@ class Probl(models.Model):
     exam_tip = models.IntegerField(blank=True, null=True, db_index=True, default=0)
 
     def __str__(self):
-        return str(self.pk) + '_' + str(self.gkey) + str(self.hint_txt)
+        return str(self.pk) + '_' + str(self.gkey) + str(self.hint_txt)+'*'+str(self.source)
         #return str(self.pk)+'_'+str(self.gkey)+str(self.result_full)
         #return str(self.pk)+'_'+str(self.gkey)+'_'+str(self.number_task)+'klass '+str(self.school_class)+'comp'
 

@@ -126,15 +126,51 @@ def task(request, pkk):
     tsk.place_ege = name_zone(zone(tsk.gkey))
     tsk.name_potok = name_potok(potok(tsk.gkey))
 
+    str_value = tsk.solution_txt
+    f = True
+    a = ''
+    while ( f ):
+        f = False
+        x = str_value.partition('smw(')
+
+
+        if x[1] == 'smw(':
+            if a:
+                a = a+'/'
+            f = True
+            str_value = x[2]
+            xx = str_value.partition(')')
+            a = a+xx[0]
+            str_value = x[2]
+
+    thm = []
+    th = a.split("/")
+
+    if a:
+
+        for t in th:
+
+            tt = Themes.objects.get(pk=int(t))
+            ttt = t
+            if int(t) < 10:
+                ttt = '90000'+t
+                print('ttt', ttt)
+            if int(t) > 9 and int(t)<100:
+                ttt = '9000'+t
+            if int(t)>99 and int(t)<1000:
+                ttt = '900'+t
+
+            u = ttt+tt.name_theme.center(100) + tt.content_theme
+            thm.append(u)
 
     context = {
-        'tp':tp,
+        'tp': tp,
+        'thm': thm,
         'houm': houm,
         'tsk': tsk
     }
 
     return render(request, 'main/task.html', context=context)
-
 
 def rvvod(request, pkk):
 

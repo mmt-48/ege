@@ -60,7 +60,9 @@
 .btn-group button:hover {
   background-color: #3e8e41;
 }
-
+.but {border: 3px solid white;
+      background-color: red;
+      cursor: pointer;}
 .px_l {
   padding: 10px;
   width: 80%;
@@ -115,9 +117,74 @@ body::before {
     color: black; /* Цвет текста */
 
    }
+   .prokrutka {
+height: 350px; /* высота нашего блока */
+width: 350px; /* ширина нашего блока */
+background: #fff; /* цвет фона, белый */
+border: 1px solid #C1C1C1; /* размер и цвет границы блока */
+overflow-x: scroll; /* прокрутка по горизонтали */
+overflow-y: scroll; /* прокрутка по вертикали */
+}
+   /*модальное окно*/
+ .modalwin {
+                height: 400px;
+                width: 400px;
+                border: 3px outset gray;
+                background: wheat;
+                top: 20%; /* отступ сверху */
+                right: 0;
+                left: 0;
+                font-size: 18px;
+                margin: 0 auto;
+                z-index:2; /* поверх всех */
+                display: none;  /* сначала невидим */
+                position: fixed; /* фиксированное позиционирование, окно стабильно при прокрутке */
+                padding: 15px;
+                border: 3px solid #383838;
+                border-radius: 10px;
+                font-family: "Goudy Bookletter 1911", sans-serif;
+            }
+
+
+            #shadow {
+                position: fixed;
+                width:100%;
+                height:100%;
+                z-index:1; /* поверх всех  кроме окна*/
+                background:#000;
+                opacity: 0.5; /*прозрачность*/
+                left:0;
+                top:0;
+            }
+
 
   </style>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+  function smw(t) {
+                var tt=900000+t;
+
+                var darkLayer = document.createElement('div'); // слой затемнения
+                var bb = document.getElementById('btnt'+tt);
+                darkLayer.id = 'shadow'; // id чтобы подхватить стиль
+                document.body.appendChild(darkLayer); // включаем затемнение
+
+                var modalWin = document.getElementById('popupWin'+tt); // находим наше "окно"
+                modalWin.style.display = 'block'; // "включаем" его
+
+                document.getElementById('btnt'+tt).focus();
+                    bb.onclick = function () {
+                    darkLayer.parentNode.removeChild(darkLayer); // удаляем затемнение
+                    modalWin.style.display = 'none'; // делаем окно невидимым
+                    return false;
+                };
+            }
+        </script>
+
+
+
+
+
 </head>
 <body>
  {% autoescape off %}
@@ -165,6 +232,24 @@ body::before {
  <button style="height:40px;width:200px;border-radius:10px" onclick="window.print()">Печать</button>
 
 </div>
+
+ {% for t in thm %}
+<!-- Наше модальное всплывающее окно -->
+
+
+        <div style=" text-align: center" id="popupWin{{t|slice:":6"}}" class="modalwin">
+ <div class="prokrutka" >
+            {{t|slice:":100"}}
+     <p>
+
+            {{t|slice:"100:"}}
+</div>
+            <form>
+                <input type="button" style="font-size: 24pt" id="btnt{{t|slice:":6"}}" value="OK">
+            </form>
+        </div>
+ {%endfor%}
+
 
 
 
