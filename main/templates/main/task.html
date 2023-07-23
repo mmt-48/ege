@@ -211,9 +211,9 @@ overflow-y: scroll; /* прокрутка по вертикали */
     </div>
 
 
-    {%if tsk.condition_txt%}
+
       <h4 align="left"> {{tsk.condition_txt }} </h4>
-    {%endif%}
+
 
 </div>
  <p></p>
@@ -227,6 +227,21 @@ overflow-y: scroll; /* прокрутка по вертикали */
     </div>
 
              <h4 align="left"> {{tsk.solution_txt }} </h4>
+
+               {%if ps == 1%}
+    <p>
+<div class="px_l">
+
+        <a>
+            <button class="but" >!</button>
+
+    -кнопка пояснения. При нажатии на неё появляется окно с формулировкой теоремы
+    или формулой, которая упоминается в последнем предложении
+    </a>
+              </div>
+{%endif%}
+
+
            </div>
 <div class="btn-group">
  <button style="height:40px;width:200px;border-radius:10px" onclick="window.print()">Печать</button>

@@ -120,7 +120,9 @@ def task(request, pkk):
 
     tsk = Probl.objects.get(pk=pkk)
     tp = Topic.objects.get(pk=tsk.topic_id)
-
+    ps = 0
+    if 'onclick="smw(' in tsk.solution_txt:
+          ps = 1
 
     tsk.ege = tsk.gkey[0:4]
     tsk.place_ege = name_zone(zone(tsk.gkey))
@@ -167,6 +169,7 @@ def task(request, pkk):
         'tp': tp,
         'thm': thm,
         'houm': houm,
+        'ps': ps,
         'tsk': tsk
     }
 
