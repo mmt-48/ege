@@ -119,7 +119,6 @@ body::before {
   <a class="button"   href="{% url 'index'  %}?shcool_class=11,ex_tip=4">ДВИ (МГУ)</a>
 {%endif%}
 {%if e_tt == 2%}
-
   <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=1">ЕГЭ профиль</a>
   <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip=2">ЕГЭ база</a>
   <a class="button"   href="{% url 'index'  %}?shcool_class=9,ex_tip=3">ОГЭ (ГИА)</a>
@@ -167,12 +166,12 @@ body::before {
 <p>
 
 {%if  e_tt == 1 %}
-<div class="px_l" style="background-color: LightBlue">
-    {%if mm == 11%}
+ <div class="px_l" style="background-color: LightBlue">
+  {%if mm == 11%}
     <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
-    {%else%}
+   {%else%}
      <h1 align="center"> Задачи базовой сложности (для {{mm}}-11- ого класса)</h1>
-    {%endif%}
+   {%endif%}
  {% for t in topp1 %}
 
     <a  href="{% url 'probls' t.pk mm e_tt%}">
@@ -221,14 +220,12 @@ body::before {
 {%endif%}
 
 {%if  e_tt == 2 %}
-<div class="px_l" style="background-color: LightBlue">
-       {%if mm == 11%}
+ <div class="px_l" style="background-color: LightBlue">
+  {%if mm == 11%}
     <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-
-    {%else%}
+  {%else%}
     <h1 align="center"> Задачи (для {{mm}}-11-ого класса)</h1>
-
-    {%endif%}
+  {%endif%}
 
 
 
@@ -241,19 +238,16 @@ body::before {
 {%endif%}
 
 {%if  e_tt == 3  %}
-<div class="px_l" style="background-color: LightBlue">
-       {%if mm == 9%}
+ <div class="px_l" style="background-color: LightBlue">
+  {%if mm == 9%}
     <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-
-    {%else%}
+  {%else%}
     <h1 align="center"> Задачи  (для {{mm}}-9-ого класса)</h1>
-
-    {%endif%}
-
+  {%endif%}
 
  {% for t in toppp %}
     <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic2}}</h4>
+     <h4 align="left"> {{forloop.counter}}. {{t.name_topic2}}</h4>
     </a>
   {%endfor%}
 </div>
