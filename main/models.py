@@ -1,6 +1,15 @@
 from django.db import models
 
 
+class Bpdf(models.Model):
+    exam_tip = models.IntegerField(blank=True, null=True, db_index=True, default=0)
+    gkey = models.CharField(max_length=20, blank=True, null=True, default='')
+    variant = models.CharField(max_length=150, blank=True, null=True, default='')
+
+    def __str__(self):
+        return str(self.gkey)
+
+
 class Smailic(models.Model):
     number_rec = models.IntegerField(default=0)
     sm = models.ImageField(upload_to='smile', default='')

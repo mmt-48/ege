@@ -263,7 +263,6 @@ function setFocus()
     {%endif%}
 </div>
 
-
     <div class="btn-group">
         {%if p.result%}
           <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result_full}}')">Проверить свой ответ</button>
@@ -279,7 +278,6 @@ function setFocus()
         <form action="{%url 'task' p.pk %}" >
           <button style="height:40px;width:200px;border-radius:10px">Решение</button>
         </form>
-
 
         </div>
 

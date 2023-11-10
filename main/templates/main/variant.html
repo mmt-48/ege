@@ -1,0 +1,323 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Задачи</title>
+
+    <style>
+     .layer1 {
+    margin-left: 10px;
+    font-size: 15pt;
+     width: 100%;
+     }
+.layer2 {
+    margin-left: 10px;
+}
+.px_l {
+  padding: 10px;
+  width: 80%;
+  font-size:15px;
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 5%;
+  border: 3px solid green;
+  font-family: "Goudy Bookletter 1911", sans-serif;
+}
+
+.btn-group button {
+  width: 10%;
+  font-weight: 900;
+  height: 20%;
+  background-color: green; /* Зеленый фон */
+  border: 1px solid green; /* Зеленый border */
+  color: #fff; /* Белый текст */
+  margin-left: 5%;
+  margin-bottom: 5%;
+  cursor: pointer; /* Указатель/значок руки */
+  float: left; /* Плавают кнопки бок о бок */
+}
+
+/* Очистить поплавки (clearfix hack) */
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none; /* Предотвращение двойных границ */
+}
+
+/* Добавление цвета фона при наведении курсора */
+.btn-group button:hover {
+  background-color: #3e8e41;
+}
+body{
+  position: relative;
+}
+body::before {
+    background:  url("{{ tp.backdrop.url }}") no-repeat center center;
+    background-size: cover;
+    content: ' ';
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    will-change: transform;
+    z-index: -1;
+    filter: opacity(50%);
+}
+
+         /*end fon*/
+
+body::before {
+    content: '';
+    position: fixed; /* Фиксируем на одном месте */
+    left: 0; right: 0; /* Вся ширин */
+    top: 0; bottom: 0; /* Вся высота */
+    z-index: -1; /* Фон ниже текста */
+    /* Параметры фона */
+
+    /*filter: blur(10px);  Размытие */
+   }
+   body {
+    color: black; /* Цвет текста */
+
+   }
+/*модальное окно*/
+ .modalwin {
+                height: 400px;
+                width: 400px;
+                border: 3px outset gray;
+                background: wheat;
+                top: 20%; /* отступ сверху */
+                right: 0;
+                left: 0;
+                font-size: 24px;
+                margin: 0 auto;
+                z-index:2; /* поверх всех */
+                display: none;  /* сначала невидим */
+                position: fixed; /* фиксированное позиционирование, окно стабильно при прокрутке */
+                padding: 15px;
+                border: 3px solid #383838;
+                border-radius: 10px;
+                font-family: "Goudy Bookletter 1911", sans-serif;
+            }
+
+
+            #shadow {
+                position: fixed;
+                width:100%;
+                height:100%;
+                z-index:1; /* поверх всех  кроме окна*/
+                background:#000;
+                opacity: 0.5; /*прозрачность*/
+                left:0;
+                top:0;
+            }
+
+
+  </style>
+
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+  function showModalWin(t) {
+                var tt=t;
+
+                var darkLayer = document.createElement('div'); // слой затемнения
+                var bb = document.getElementById('btnt'+tt);
+                darkLayer.id = 'shadow'; // id чтобы подхватить стиль
+                document.body.appendChild(darkLayer); // включаем затемнение
+
+                var modalWin = document.getElementById('popupWin'+tt); // находим наше "окно"
+                modalWin.style.display = 'block'; // "включаем" его
+
+                document.getElementById('btnt'+tt).focus();
+                    bb.onclick = function () {
+                    darkLayer.parentNode.removeChild(darkLayer); // удаляем затемнение
+                    modalWin.style.display = 'none'; // делаем окно невидимым
+                    return false;
+                };
+            }
+        </script>
+
+
+<script type="text/javascript">
+            function showModalWinv(t,rest) {
+
+               var resz ='';
+                var tt = t;
+                var darkLayer = document.createElement('div'); // слой затемнения
+                var bb = document.getElementById('btntt'+tt); //кнопка ok
+                var bbb = document.getElementById('btnttt'+tt);//кнопка cancel
+
+
+                darkLayer.id = 'shadow'; // id чтобы подхватить стиль
+                document.body.appendChild(darkLayer); // включаем затемнение
+
+                var modalWin = document.getElementById('popupWinv'+tt); // находим наше "окно"
+                modalWin.style.display = 'block'; // "включаем" его
+                document.getElementById('res'+tt).focus();
+                bbb.onclick = function () {  // при клике cancel затемнения все исчезнет
+                    darkLayer.parentNode.removeChild(darkLayer); // удаляем затемнение
+                    modalWin.style.display = 'none'; // делаем окно невидимым
+                    return false;
+                                           }
+               bb.onclick = function () { // клик по ок
+                  darkLayer.parentNode.removeChild(darkLayer); // удаляем затемнение
+                 var res = document.getElementById('res'+tt);
+                 var ress = res.value;
+                  modalWin.style.display = 'none'; // делаем 1 окно невидимым
+
+
+                  if (ress.replace(',','.') == rest.replace(',','.')) { return winpn(tt, 'P')  } else {return winpn(tt, 'N')};
+                  //if (ress == rest) { return winpn(tt, 'P')  } else {return winpn(tt, 'N')};
+                  }
+                                            }
+
+
+    function winpn(tt, pn){
+
+                var darkLayer = document.createElement('div'); // слой затемнения
+
+                darkLayer.id = 'shadow'; // id чтобы подхватить стиль
+                document.body.appendChild(darkLayer); // включаем затемнение
+                 var nn = document.getElementById('btntn'+tt);
+                 var pp = document.getElementById('btntp'+tt);
+                var modalWinn = document.getElementById('popupWinn'+tt);
+                var modalWinp = document.getElementById('popupWinp'+tt);
+                if (pn == 'N')
+                {xx=modalWinn;
+                 yy=nn;
+                  xx.style.display = 'block';// "включаем" его
+                  document.getElementById('btntn'+tt).focus();
+                 }
+                else
+                 {var xx=modalWinp; // находим наше "окно"
+                 yy=pp;
+
+
+                 xx.style.display = 'block'; // "включаем" его
+                 document.getElementById('btntp'+tt).focus();
+                 }
+                 yy.onclick=function(){
+
+                 darkLayer.parentNode.removeChild(darkLayer);
+                 xx.style.display = 'none'; // "выключаем" его
+                 }
+        return false;
+    }
+
+</script>
+
+    <script>
+    function clickok(t){
+
+          var bb = document.getElementById('btntt'+t); //кнопка ok
+        bb.click();}
+    </script>
+    <script type="text/javascript">
+function setFocus()
+{
+     document.getElementById("text").focus();
+}
+</script>
+</head>
+<body>
+
+{% autoescape off %}
+
+ {% for p in thm %}
+
+
+<div class="px_l">
+    {%if p.condition_txt%}
+      <h4 align="left"> {{forloop.counter}}.{{p.condition_txt }} </h4>
+    {%endif%}
+</div>
+
+    <div class="btn-group">
+        {%if p.result%}
+          <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result_full}}')">Проверить свой ответ</button>
+        {%endif%}
+        {%if p.result_full or p.result%}
+          <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWin({{forloop.counter}})">Показать ответ</button>
+        {%endif%}
+        {%if p.hint_txt%}
+          <form action="{%url 'theme' p.pk %}" >
+              <button style="height:40px;width:200px;border-radius:10px" >Что надо знать?</button>
+          </form>
+        {%endif%}
+        <form action="{%url 'task' p.complexity %}" >
+          <button style="height:40px;width:200px;border-radius:10px">Решение</button>
+        </form>
+
+        </div>
+
+<!-- Наше модальное всплывающее окно -->
+        <div style="text-align: center" id="popupWin{{forloop.counter}}" class="modalwin">
+            <h4> РЕЗУЛЬТАТ </h4>
+            {%if p.result%}
+             <h4> {{p.result}} </h4>
+            {%else%}
+              {%if p.result_full%}
+                <h4> {{p.result_full}} </h4>
+              {%endif%}
+            {%endif%}
+
+            <form>
+                <input type="button" style="font-size: 24pt" id="btnt{{forloop.counter}}" value="OK">
+            </form>
+        </div>
+
+<!-- Наше 2-ое модальное всплывающее окно -->
+        <div style="text-align: center" id="popupWinv{{forloop.counter}}"
+         class="modalwin">
+            <h4> ВВЕДИТЕ ВАШ РЕЗУЛЬТАТ </h4>
+            <form>
+                <input name='res' style="font-size: 24pt" id="res{{forloop.counter}}" onkeydown="if(event.keyCode==13){clickok('{{forloop.counter}}');return false;}" autofocus>
+                <input type="button" style="font-size: 24pt" id="btntt{{forloop.counter}}" value="OK">
+                <input  type="button" style="font-size: 24pt" id="btnttt{{forloop.counter}}" value="Cancel">
+            </form>
+
+        </div>
+
+<!-- Наше 3 модальное всплывающее окно -->
+        <div style="text-align: center" id="popupWinp{{forloop.counter}}" class="modalwin">
+            <div><img src="{{sm.sm.url}}" width="150" alt="ll"></div>
+            <h4> ПРАВИЛЬНО!!! </h4>
+
+            <form>
+                <input type="button" style="font-size: 24pt" id="btntp{{forloop.counter}}" autofocus value="OK">
+            </form>
+
+        </div>
+
+<!-- Наше 4 модальное всплывающее окно -->
+        <div style="text-align: center" id="popupWinn{{forloop.counter}}" autofocus class="modalwin">
+            <div><img src="{{sm.ms.url}}" width="150" alt="ll"></div>
+            <h4> НЕПРАВИЛЬНО !!! </h4>
+
+            <form>
+                <input type="button" style="font-size: 24pt" id="btntn{{forloop.counter}}" value="OK">
+            </form>
+
+        </div>
+
+
+  {%endfor%}
+
+
+{% endautoescape %}
+
+</body>
+
+</html>
+
+

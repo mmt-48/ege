@@ -108,35 +108,28 @@ body::before {
 <a  style="font-size: 40px;" href= "{% url 'ege'  %}">Предисловие</a>
 </div>
 <p>
-<p>
 
 <div class="px_l" style="background-color: LightBlue">
- <font size="10px"> Тип экзамена:</font>
-{%if e_tt == 1%}
-  <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip=1">ЕГЭ профиль</a>
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=2">ЕГЭ база</a>
-  <a class="button"   href="{% url 'index'  %}?shcool_class=9,ex_tip=3">ОГЭ (ГИА)</a>
-  <a class="button"   href="{% url 'index'  %}?shcool_class=11,ex_tip=4">ДВИ (МГУ)</a>
-{%endif%}
-{%if e_tt == 2%}
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=1">ЕГЭ профиль</a>
-  <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip=2">ЕГЭ база</a>
-  <a class="button"   href="{% url 'index'  %}?shcool_class=9,ex_tip=3">ОГЭ (ГИА)</a>
-  <a class="button"   href="{% url 'index'  %}?shcool_class=11,ex_tip=4">ДВИ (МГУ)</a>
-{%endif%}
- {%if e_tt == 3%}
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=1">ЕГЭ профиль</a>
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=2">ЕГЭ база</a>
-  <a class="button"  style=" border: 4px solid red" href="{% url 'index'  %}?shcool_class=9,ex_tip=3">ОГЭ (ГИА) </a>
- <a class="button"   href="{% url 'index'  %}?shcool_class=11,ex_tip=4">ДВИ (МГУ)</a>
- {%endif%}
-{%if e_tt == 4%}
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=1">ЕГЭ профиль</a>
-  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip=2">ЕГЭ база</a>
-  <a class="button"   href="{% url 'index'  %}?shcool_class=9,ex_tip=3">ОГЭ (ГИА) </a>
-  <a class="button"  style=" border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip=4">ДВИ (МГУ)</a>
- {%endif%}
+    <font size="10px"> Тип упражнений:</font>
+    <p[>
+{%if v_r == 1%}
+  <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip={{e_tt}},varsad=1">Задачи</a>
+  <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip={{e_tt}},varsad=2">Варианты</a>
+{%else%}
+    <a class="button"  href="{% url 'index'  %}?shcool_class=11,ex_tip={{e_tt}},varsad=1">Задачи</a>
+  <a class="button"  style="border: 4px solid red" href="{% url 'index'  %}?shcool_class=11,ex_tip={{e_tt}},varsad=2">Варианты</a>
 
+  {%  endif%}
+    <p>
+ <font size="10px"> Тип экзамена:</font>
+    {%for i in m4%}
+    {%if e_tt == i.1%}
+    <a class="button" style="border: 4px solid red" href="{% url 'index'  %}?shcool_class={{i.2}},ex_tip={{i.1}},varsad={{v_r}}">{{i.0}}</a>
+    {%else%}
+    <a class="button" href="{% url 'index'  %}?shcool_class={{i.2}},ex_tip={{i.1}},varsad={{v_r}}">{{i.0}}</a>
+    {%endif%}
+
+    {%endfor%}
 
     <p>
 
@@ -164,7 +157,7 @@ body::before {
      </div>
 <p>
 <p>
-
+{%if v_r == 1%}
 {%if  e_tt == 1 %}
  <div class="px_l" style="background-color: LightBlue">
   {%if mm == 11%}
@@ -228,7 +221,6 @@ body::before {
   {%endif%}
 
 
-
  {% for t in topp %}
     <a  href="{% url 'probls' t.pk mm e_tt %}">
      <h4 align="left">  {{forloop.counter}}. {{t.name_topic1}}</h4>
@@ -253,24 +245,30 @@ body::before {
 </div>
 {%endif%}
 {%if  e_tt == 4 %}
-<div class="px_l" style="background-color: LightBlue">
-       {%if mm == 11%}
-    <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-
+ <div class="px_l" style="background-color: LightBlue">
+   {%if mm == 11%}
+     <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
     {%else%}
-    <h1 align="center"> Задачи (для {{mm}}-11-ого класса)</h1>
+     <h1 align="center"> Задачи (для {{mm}}-11-ого класса)</h1>
+   {%endif%}
 
-    {%endif%}
-
-
-
- {% for t in topppp %}
+  {% for t in topppp %}
     <a  href="{% url 'probls' t.pk mm e_tt %}">
      <h4 align="left">  {{forloop.counter}}. {{t.name_topic3}}</h4>
     </a>
   {%endfor%}
+
+ </div>
+
+{%endif%}
+{%else%}
+<div class="px_l" style="background-color: LightBlue">
+ {% for t in tpdf %}
+    <a  href="{% url 'variant' t.pk e_tt %}">
+     <h4 align="left"> {{forloop.counter}}. {{t.variant}}</h4>
+    </a>
+  {%endfor%}
 </div>
 {%endif%}
-
 </body>
 </html>

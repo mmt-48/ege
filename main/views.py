@@ -4,6 +4,7 @@ from .models import Probl
 from .models import Bimg
 from .models import Themes
 from .models import Smailic
+from .models import Bpdf
 
 import socket
 
@@ -29,10 +30,49 @@ def theme(request, pkk):
     return render(request, 'main/theme.html', context=context)
 
 
+def variant(request, pkk, e_tt):
+    sm = Smailic.objects.get(pk=1)
+
+    prb = Bpdf.objects.get(pk=pkk)
+    tp = Topic.objects.get(pk=e_tt) #для фона-у каждого типа- свой фон
+
+    hnt = prb.variant
+
+    th = hnt.split(",")
+    thm = []
+    for t in th:
+        if int(t) != 0:
+            tt = Probl.objects.get(pk=int(t))
+            tt.complexity = int(t)
+            u = tt    ##.condition_txt
+            thm.append(u)
+
+    for p in thm:
+        p.ege = p.gkey[0:4]
+        p.place_ege = name_zone(zone(p.gkey))
+        p.name_potok = name_potok(potok(p.gkey))
+        if p.result:
+            pp = p.result
+            pp = pp.replace('\\', '')
+            pp = pp.replace('(', '')
+            pp = pp.replace(')', '')
+            p.result_full = pp
+
+    context = {
+        'tp': tp,
+        'sm': sm,
+        'thm': thm
+    }
+
+    return render(request, 'main/variant.html', context=context)
+
+
 def index(request):
     tp = Topic.objects.get(pk=1)
     e_t = extip(request)
     e_tt = int(e_t)
+    vr = exvarsad(request)
+    v_r = int(vr)
     if "DESKTOP" in socket.gethostname():
         form_nopor(e_tt)
 
@@ -50,7 +90,18 @@ def index(request):
     topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
+
+    tpdf = Bpdf.objects.filter(exam_tip=e_tt)
+
+    for p in tpdf:
+        p.variant = p.gkey[0:4] + ' г. ' + name_zone(zone(p.gkey)) + ' ' + name_potok(potok(p.gkey))
+
+
+    m4 = [['ЕГЭ профиль', 1, 11], ['ЕГЭ база', 2, 11], ['ОГЭ (ГИА)', 3, 9], ['ДВИ (МГУ)', 4, 11]]
     context = {
+        'm4': m4,
+        'tpdf': tpdf,
+        'v_r': v_r,
         'tp': tp,
         'mm': mm,
         'e_tt': e_tt,
@@ -66,6 +117,18 @@ def index(request):
     return render(request, 'main/index.html', context=context)
 
 
+def pdf(request, e_tt):
+
+    tpdf = Bpdf.objects.filter(exam_tip=e_tt)
+
+    context = {
+        'e_tt': e_tt,
+         'tpdf': tpdf
+    }
+
+    return render(request, 'main/pdf.html', context=context)
+
+
 def probls(request, pkkk, mm, e_tt):
 
     tp = Topic.objects.get(pk=pkkk)
@@ -75,6 +138,7 @@ def probls(request, pkkk, mm, e_tt):
     bimgs = Bimg.objects.filter()
 
    # pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
+
     if e_tt == 1:
         pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=4).order_by("complexity")
 
@@ -107,7 +171,6 @@ def probls(request, pkkk, mm, e_tt):
         'sm': sm,
         'bimgs': bimgs,
         'probls': pr
-
     }
 
     return render(request, 'main/probls.html', context=context)
@@ -319,6 +382,16 @@ def extip(request):
     u = str(request)
 
     k = u.find('ex_tip=')
+    m = '1'
+    if k > 0:
+        m = u[k + 7:k + 8]
+
+    return m
+
+def exvarsad(request):
+    u = str(request)
+
+    k = u.find('varsad=')
     m = '1'
     if k > 0:
         m = u[k + 7:k + 8]
