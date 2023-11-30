@@ -84,6 +84,7 @@ def index(request):
         m6_11 = [6, 7, 8, 9]
         if mm > 9:
             mm = 9
+
     topppp = Topic.objects.filter(mett3__lte=mm, mett3__gte=1).order_by("number_in_order")
     toppp = Topic.objects.filter(mett2__lte=mm, mett2__gte=1).order_by("number_in_order")
     topp = Topic.objects.filter(mett1__lte=mm, mett1__gte=1).order_by("number_in_order")
@@ -91,13 +92,13 @@ def index(request):
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
 
-    tpdf = Bpdf.objects.filter(exam_tip=e_tt)
+    tpdf = Bpdf.objects.filter(exam_tip=e_tt).order_by('gkey')
 
     for p in tpdf:
         p.variant = p.gkey[0:4] + ' г. ' + name_zone(zone(p.gkey)) + ' ' + name_potok(potok(p.gkey))
 
-
     m4 = [['ЕГЭ профиль', 1, 11], ['ЕГЭ база', 2, 11], ['ОГЭ (ГИА)', 3, 9], ['ДВИ (МГУ)', 4, 11]]
+
     context = {
         'm4': m4,
         'tpdf': tpdf,
