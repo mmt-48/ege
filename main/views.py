@@ -88,7 +88,7 @@ def index(request):
     topppp = Topic.objects.filter(mett3__lte=mm, mett3__gte=1).order_by("number_in_order")
     toppp = Topic.objects.filter(mett2__lte=mm, mett2__gte=1).order_by("number_in_order")
     topp = Topic.objects.filter(mett1__lte=mm, mett1__gte=1).order_by("number_in_order")
-    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm).order_by("number_in_order")
+    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm,mett__gte=1).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
 
@@ -199,7 +199,6 @@ def task(request, pkk):
         f = False
         x = str_value.partition('smw(')
 
-
         if x[1] == 'smw(':
             if a:
                 a = a+'/'
@@ -213,14 +212,12 @@ def task(request, pkk):
     th = a.split("/")
 
     if a:
-
         for t in th:
-
             tt = Themes.objects.get(pk=int(t))
             ttt = t
             if int(t) < 10:
                 ttt = '90000'+t
-                print('ttt', ttt)
+
             if int(t) > 9 and int(t)<100:
                 ttt = '9000'+t
             if int(t)>99 and int(t)<1000:
@@ -250,7 +247,6 @@ def rvvod(request, pkk):
     }
 
     return render(request, 'main/vvod.html', context=context)
-
 
 def vvod(request, pkk):
     tsk = Probl.objects.get(pk=pkk)
@@ -316,7 +312,6 @@ def name_zone(zonne):
         nz = 'Дальный Восток'
     else:
         nz = '???'
-
     return nz
 
 def form_nopor(e_tt):
@@ -339,10 +334,8 @@ def form_nopor(e_tt):
                 t.mett = p.school_class
             if (p.school_class > 0) and (p.school_class < t.mett1) and (p.exam_tip >= 5) and (p.exam_tip <= 8):
                 t.mett1 = p.school_class
-
             if (p.school_class > 0) and (p.school_class < t.mett2) and (p.exam_tip >= 9) and (p.exam_tip <= 12):
                 t.mett2 = p.school_class
-
             if (p.school_class > 0) and (p.school_class < t.mett3) and (p.exam_tip == 13):
                 t.mett3 = p.school_class
 

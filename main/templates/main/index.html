@@ -62,9 +62,9 @@ padding: 10px;
 }
 
 .px_l1{
-  padding: 10px;
+  padding: 1%;
   float: right;
-  width:70%;
+  width:60%;
   font-size:24px;
   background-color: white;
   border: 3px solid green;
@@ -74,7 +74,7 @@ padding: 10px;
 
 
 .px_l2{
-  padding: 10px;
+  padding: 1%;
   float: left;
   width:25%;
   font-size:24px;
@@ -155,7 +155,6 @@ padding: 10px;
 <div class="px_l4" style="background-color: LightBlue"  ;>
 
 <div class="px_l2" style="background-color: LightBlue">
-
     <font size="6px"> Тип упражнений</font>
 <p>
 
@@ -217,9 +216,9 @@ padding: 10px;
   <div class="px_l" style="background-color: LightBlue">
    {%if mm == 11%}
      <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
-    {%else%}
+   {%else%}
      <h1 align="center"> Задачи базовой сложности (для {{mm}}-11- ого класса)</h1>
-    {%endif%}
+   {%endif%}
  {% for t in topp1 %}
 
     <a  href="{% url 'probls' t.pk mm e_tt%}">
