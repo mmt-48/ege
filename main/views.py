@@ -88,11 +88,25 @@ def index(request):
     topppp = Topic.objects.filter(mett3__lte=mm, mett3__gte=1).order_by("number_in_order")
     toppp = Topic.objects.filter(mett2__lte=mm, mett2__gte=1).order_by("number_in_order")
     topp = Topic.objects.filter(mett1__lte=mm, mett1__gte=1).order_by("number_in_order")
-    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm,mett__gte=1).order_by("number_in_order")
+    topp1 = Topic.objects.filter(tip_top=1, mett__lte=mm, mett__gte=1).order_by("number_in_order")
     topp2 = Topic.objects.filter(tip_top=2, mett__lte=mm).order_by("number_in_order")
     topp3 = Topic.objects.filter(tip_top=3, mett__lte=mm).order_by("number_in_order")
 
+    if e_tt == 1:
+        topr = []
+    if e_tt == 2:
+        topr = topp
+    if e_tt == 3:
+        topr = toppp
+    if e_tt == 4:
+        topr = topppp
+
+
+
+
+
     tpdf = Bpdf.objects.filter(exam_tip=e_tt).order_by('gkey')
+
 
     for p in tpdf:
         p.variant = p.gkey[0:4] + ' г. ' + name_zone(zone(p.gkey)) + ' ' + name_potok(potok(p.gkey))
@@ -107,6 +121,7 @@ def index(request):
         'mm': mm,
         'e_tt': e_tt,
         'm6_11': m6_11,
+        'topr': topr,
         'topppp': topppp,
         'toppp': toppp,
         'topp': topp,
@@ -138,7 +153,7 @@ def probls(request, pkkk, mm, e_tt):
 
     bimgs = Bimg.objects.filter()
 
-   # pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0).order_by("complexity")
+    #pr = Probl.objects.filter()
 
     if e_tt == 1:
         pr = Probl.objects.filter(topic=pkk, school_class__lte=mm, number_task__gt=0, exam_tip__lte=4).order_by("complexity")

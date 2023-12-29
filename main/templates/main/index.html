@@ -42,11 +42,13 @@ body::before {
    .px_l {
   padding: 10px;
   width:80%;
+  line-height: 0.8;
   font-size:24px;
   background-color: white;
   margin-left: 5%;
   border: 3px solid green;
   border-radius: 10px;
+  text-decoration: none;
   font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
@@ -58,6 +60,7 @@ padding: 10px;
  margin-left: 5%;
   border: 3px solid green;
   border-radius: 10px;
+  text-decoration: none;
   height: 200px;
 }
 
@@ -69,7 +72,8 @@ padding: 10px;
   background-color: white;
   border: 3px solid green;
   border-radius: 10px;
-  font-family: "Goudy Bookletter 1911", sans-serif;
+  text-decoration: none;
+  font-family: "Goudy Bookletter 1911",sans-serif;
 }
 
 
@@ -81,6 +85,7 @@ padding: 10px;
   background-color: white;
   border: 3px solid green;
   border-radius: 10px;
+  text-decoration: none;
   font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
@@ -143,7 +148,7 @@ padding: 10px;
 <noscript><div><img src="https://mc.yandex.ru/watch/91289361" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <div class="px_l" style="background-color: LightBlue">
-<h2 align="center">Задачи из реальных вариантов экзаменов по математике (ЕГЭ-базовый и профильный уровни, ОГЭ, ДВИ) c 2010 по 2023 год </h2>
+<h3 align="center">Задачи из реальных вариантов экзаменов по математике (ЕГЭ-базовый и профильный уровни, ОГЭ, ДВИ) c 2010 по 2023 год </h3>
 </div>
     <p>
 
@@ -164,7 +169,7 @@ padding: 10px;
 {%else%}
   <a class="button" href="{% url 'index'  %}?shcool_class=11,ex_tip={{e_tt}},varsad=1">Задачи</a>
   <a class="button" style="border: 4px solid red" href="{% url 'index' %}?shcool_class=11,ex_tip={{e_tt}},varsad=2">Варианты</a>
-{%  endif%}
+{%endif%}
     </div>
 
         <div class="px_l1" style="background-color: LightBlue">
@@ -178,31 +183,6 @@ padding: 10px;
       <a class="button1" href="{% url 'index'  %}?shcool_class={{i.2}},ex_tip={{i.1}},varsad={{v_r}}">{{i.0}}</a>
      {%endif%}
     {%endfor%}
-<!--
-    <p>
-
-    <a class="button1" style="background-color: LightBlue; color: black" >Задачи, доступные для учеников выбранного класса</a>
-
-    {%for m in m6_11%}
-     {%if e_tt == 3%}
-
-          {%if m == mm %}
-            <a class="button" style="border: 4px solid red" href= "{% url 'index'  %}?shcool_class={{m}},ex_tip={{e_tt}}">Класс {{m}}</a>
-           {%else%}
-            <a class="button"  href= "{% url 'index'  %}?shcool_class={{m}},ex_tip={{e_tt}}">Класс {{m}}</a>
-           {%endif%}
-
-     {%else%}
-
-         {%if m == mm %}
-           <a class="button" style="border: 4px solid red"  href= "{% url 'index'  %}?shcool_class={{m}},ex_tip={{e_tt}}">Kласс {{m}}</a>
-          {%else%}
-            <a class="button" href= "{% url 'index'  %}?shcool_class={{m}},ex_tip={{e_tt}}">Kласс {{m}}</a>
-          {%endif%}
-
-      {%endif%}
-    {%endfor%}
- -->
      </div>
 </div>
 <div id="clear">
@@ -214,115 +194,55 @@ padding: 10px;
 {%if v_r == 1%}
  {%if  e_tt == 1 %}
   <div class="px_l" style="background-color: LightBlue">
-   {%if mm == 11%}
-     <h1 align="center"> Задачи базовой сложности (для {{mm}}-ого класса)</h1>
-   {%else%}
-     <h1 align="center"> Задачи базовой сложности (для {{mm}}-11- ого класса)</h1>
-   {%endif%}
- {% for t in topp1 %}
-
-    <a  href="{% url 'probls' t.pk mm e_tt%}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+   <h1 align="center"> Задачи базовой сложности </h1>
+   {% for t in topp1 %}
+    <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt%}">
+     <h5 align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
     </a>
-  {%endfor%}
-</div>
-<p>
+   {%endfor%}
+  </div>
+  <p>
+  <p>
+  <div class="px_l" style="background-color: LightBlue">
+   <h1 align="center"> Задачи стандартной  сложности </h1>
 
-<p>
-<div class="px_l" style="background-color: LightBlue">
-    {%if mm == 11%}
-    <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-ого класса)</h1>
-
-    {%else%}
-    <h1 align="center"> Задачи стандартной  сложности (для {{mm}}-11-ого класса)</h1>
-
-    {%endif%}
-
- {% for t in topp2 %}
-
-    <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+   {% for t in topp2 %}
+    <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
+     <h5  align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
     </a>
-  {%endfor%}
-</div>
-<p>
-
-<p>
-<div class="px_l" style="background-color: LightBlue">
-    {%if mm == 11%}
-    <h1 align="center"> Задачи повышенной сложности (для {{mm}}-ого класса)</h1>
-
-    {%else%}
-    <h1 align="center"> Задачи повышенной сложности (для {{mm}}-11-ого класса)</h1>
-
-    {%endif%}
-
- {% for t in topp3 %}
-    <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic}}</h4>
+   {%endfor%}
+  </div>
+  <p>
+  <p>
+  <div class="px_l" style="background-color: LightBlue">
+    <h1 align="center"> Задачи повышенной сложности </h1>
+    {% for t in topp3 %}
+    <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
+     <h5  align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
     </a>
 
-  {%endfor%}
-</div>
-{%endif%}
+    {%endfor%}
+  </div>
+ {%else%}
 
-{%if  e_tt == 2 %}
- <div class="px_l" style="background-color: LightBlue">
-  {%if mm == 11%}
-    <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-  {%else%}
-    <h1 align="center"> Задачи (для {{mm}}-11-ого класса)</h1>
-  {%endif%}
-
-
- {% for t in topp %}
-    <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic1}}</h4>
+  <div class="px_l" style="background-color: LightBlue">
+  <h1 align="center"> Задачи  </h1>
+  {% for t in topr %}
+    <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
+     <h5  align="left">  {{forloop.counter}}. {{t.name_topic1}}</h5>
     </a>
   {%endfor%}
-</div>
-{%endif%}
+  </div>
 
-{%if  e_tt == 3  %}
- <div class="px_l" style="background-color: LightBlue">
-  {%if mm == 9%}
-    <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-  {%else%}
-    <h1 align="center"> Задачи  (для {{mm}}-9-ого класса)</h1>
-  {%endif%}
-
- {% for t in toppp %}
-    <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left"> {{forloop.counter}}. {{t.name_topic2}}</h4>
-    </a>
-  {%endfor%}
-</div>
-{%endif%}
-{%if  e_tt == 4 %}
- <div class="px_l" style="background-color: LightBlue">
-   {%if mm == 11%}
-     <h1 align="center"> Задачи  (для {{mm}}-ого класса)</h1>
-    {%else%}
-     <h1 align="center"> Задачи (для {{mm}}-11-ого класса)</h1>
-   {%endif%}
-
-  {% for t in topppp %}
-    <a  href="{% url 'probls' t.pk mm e_tt %}">
-     <h4 align="left">  {{forloop.counter}}. {{t.name_topic3}}</h4>
-    </a>
-  {%endfor%}
-
- </div>
-
-{%endif%}
+ {%endif%}
 {%else%}
-<div class="px_l" style="background-color: LightBlue">
+ <div class="px_l" style="background-color: LightBlue">
  {% for t in tpdf %}
-    <a  href="{% url 'variant' t.pk e_tt %}">
-     <h4 align="left"> {{forloop.counter}}. {{t.variant}}</h4>
+    <a  style="text-decoration: none;" href="{% url 'variant' t.pk e_tt %}">
+     <h4  align="left"> {{forloop.counter}}. {{t.variant}}</h4>
     </a>
   {%endfor%}
-</div>
+ </div>
 {%endif%}
 </body>
 </html>

@@ -219,27 +219,22 @@ MathJax.Hub.Config({
 </div>
  <p></p>
  <p></p>
-
-
-          <div class="px_l">
-
-              <div class="header-h1">
-     <h1>Решение</h1>
-    </div>
-
-             <h4 align="left"> {{tsk.solution_txt }} </h4>
-
-               {%if ps == 1%}
-    <p>
-<div class="px_l">
-
-        <a>
-            <button class="but" >!</button>
+   <div class="px_l">
+     <div class="header-h1">
+      <h1>Решение</h1>
+        </div>
+         <h4 align="left"> {{tsk.solution_txt }} </h4>
+           {%if ps == 1%}
+            <p>
+           <div class="px_l">
+            <a>
+              <button class="but" >!</button>
 
     -кнопка пояснения. При нажатии на неё появляется окно с формулировкой теоремы
-    или формулой, которая упоминается в последнем предложении
-    </a>
-              </div>
+    или формулой, которая используется перед этой кнопкой, или, если стоит перед знаком "=",
+    поясняет действие этого равенства.
+            </a>
+           </div>
 {%endif%}
 
 
