@@ -206,17 +206,12 @@ MathJax.Hub.Config({
 
 </div>
 
-
-
-
 <div class="px_l">
     <div class="header-h1">
      <h1>Условие</h1>
     </div>
-
       <h4 align="left"> {{tsk.condition_txt }} </h4>
-
-</div>
+    </div>
  <p></p>
  <p></p>
    <div class="px_l">
@@ -246,22 +241,17 @@ MathJax.Hub.Config({
 
  {% for t in thm %}
 <!-- Наше модальное всплывающее окно -->
-
-
         <div style=" text-align: center" id="popupWin{{t|slice:":6"}}" class="modalwin">
- <div class="prokrutka" >
+          <div class="prokrutka" >
             {{t|slice:":100"}}
-     <p>
-
+            <p>
             {{t|slice:"100:"}}
-</div>
+          </div>
             <form>
                 <input type="button" style="font-size: 24pt" id="btnt{{t|slice:":6"}}" value="OK">
             </form>
         </div>
  {%endfor%}
-
-
 
 
 {% endautoescape %}
