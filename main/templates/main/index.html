@@ -67,7 +67,7 @@ padding: 10px;
 .px_l1{
   padding: 1%;
   float: right;
-  width:60%;
+  width:68%;
   font-size:24px;
   background-color: white;
   border: 3px solid green;
@@ -171,10 +171,8 @@ padding: 10px;
   <a class="button" style="border: 4px solid red" href="{% url 'index' %}?shcool_class=11,ex_tip={{e_tt}},varsad=2">Варианты</a>
 {%endif%}
     </div>
-
-        <div class="px_l1" style="background-color: LightBlue">
-
-<font size="6px" >Тип экзамена</font>
+   <div class="px_l1" style="background-color: LightBlue">
+    <font size="6px" >Тип экзамена</font>
             <p>
     {%for i in m4%}
      {%if e_tt == i.1%}
@@ -183,12 +181,8 @@ padding: 10px;
       <a class="button1" href="{% url 'index'  %}?shcool_class={{i.2}},ex_tip={{i.1}},varsad={{v_r}}">{{i.0}}</a>
      {%endif%}
     {%endfor%}
-     </div>
+    </div>
 </div>
-<div id="clear">
-
-	</div>
-<p>
 
 <p>
 {%if v_r == 1%}
@@ -214,15 +208,14 @@ padding: 10px;
   </div>
   <p>
   <p>
-  <div class="px_l" style="background-color: LightBlue">
+   <div class="px_l" style="background-color: LightBlue">
     <h1 align="center"> Задачи повышенной сложности </h1>
     {% for t in topp3 %}
-    <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
-     <h5  align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
-    </a>
-
+     <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
+      <h5  align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
+     </a>
     {%endfor%}
-  </div>
+   </div>
  {%else%}
 
   <div class="px_l" style="background-color: LightBlue">
