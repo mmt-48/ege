@@ -61,14 +61,14 @@ padding: 10px;
   border: 3px solid green;
   border-radius: 10px;
   text-decoration: none;
-  height: 200px;
+
+  display: inline-block;
 }
 
 .px_l1{
   padding: 1%;
   float: right;
-  width:68%;
-  font-size:24px;
+  font-size:2vw;
   background-color: white;
   border: 3px solid green;
   border-radius: 10px;
@@ -80,13 +80,13 @@ padding: 10px;
 .px_l2{
   padding: 1%;
   float: left;
-  width:25%;
-  font-size:24px;
+  font-size:2vw;
   background-color: white;
   border: 3px solid green;
   border-radius: 10px;
   text-decoration: none;
   font-family: "Goudy Bookletter 1911", sans-serif;
+  display: inline-block;
 }
 
  .button {
@@ -94,14 +94,14 @@ padding: 10px;
       background-color:  green;
       border: 2px solid #fff;
       color: #fff;
-      padding: 15px 30px;
-      text-align: left;
+      padding: 5px 5px;
+      padding-right: 5px;
+      text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 80%;
+      font-size: 1.5vw;
       margin: 4px 2px;
       cursor: pointer;
-      width: 24%;
       height: 10%;
       }
  .button1 {
@@ -109,14 +109,14 @@ padding: 10px;
       background-color:  green;
       border: 2px solid #fff;
       color: #fff;
-      padding: 15px 30px;
-      text-align: left;
+      padding: 5px 5px;
+      padding-right: 5px;
+      text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 80%;
+      font-size: 1.5vw;
       margin: 4px 2px;
       cursor: pointer;
-      width: 15%;
       height: 10%;
       }
 
@@ -160,7 +160,8 @@ padding: 10px;
 <div class="px_l4" style="background-color: LightBlue"  ;>
 
 <div class="px_l2" style="background-color: LightBlue">
-    <font size="6px"> Тип упражнений</font>
+    <a> Тип упражнений</a>
+
 <p>
 
  {%if v_r == 1%}
@@ -172,7 +173,9 @@ padding: 10px;
 {%endif%}
     </div>
    <div class="px_l1" style="background-color: LightBlue">
-    <font size="6px" >Тип экзамена</font>
+        <a> Тип экзамена</a>
+
+
             <p>
     {%for i in m4%}
      {%if e_tt == i.1%}
