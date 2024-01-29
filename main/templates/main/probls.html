@@ -95,14 +95,14 @@ body::before {
    }
 /*модальное окно*/
  .modalwin {
-                height: 300px;
-                width: 300px;
+                height: 230px;
+                width: 250px;
                 border: 3px outset gray;
                 background: wheat;
                 top: 20%; /* отступ сверху */
                 right: 0;
                 left: 0;
-                font-size: 24px;
+                font-size: 20px;
                 margin: 0 auto;
                 z-index:2; /* поверх всех */
                 display: none;  /* сначала невидим */
@@ -316,8 +316,8 @@ function setFocus()
             <h4> ВВЕДИТЕ ВАШ РЕЗУЛЬТАТ </h4>
             <form>
                 <input name='res' style="font-size: 18pt" id="res{{forloop.counter}}" onkeydown="if(event.keyCode==13){clickok('{{forloop.counter}}');return false;}" autofocus>
-                <input type="button" style="font-size: 24pt" id="btntt{{forloop.counter}}" value="OK">
-                <input  type="button" style="font-size: 24pt" id="btnttt{{forloop.counter}}" value="Cancel">
+                <input type="button" style="font-size: 18pt" id="btntt{{forloop.counter}}" value="OK">
+                <input  type="button" style="font-size: 18pt" id="btnttt{{forloop.counter}}" value="Cancel">
             </form>
 
         </div>
