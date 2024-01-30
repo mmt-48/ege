@@ -73,7 +73,7 @@ def index(request):
 
     monitor_height = root.winfo_screenheight()
     monitor_width = root.winfo_screenwidth()
-    mod = 0
+    mob = 0
     if monitor_width < 500:
         mob = 1
     print("width x height = %d x %d (pixels)" % (monitor_width, monitor_height))
