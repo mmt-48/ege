@@ -76,7 +76,7 @@ def index(request):
     mob = 0
     if monitor_width < 500:
         mob = 1
-    print("width x height = %d x %d (pixels)" % (monitor_width, monitor_height))
+
 
     tp = Topic.objects.get(pk=1)
     e_t = extip(request)
