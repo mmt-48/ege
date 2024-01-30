@@ -7,7 +7,7 @@ from .models import Smailic
 from .models import Bpdf
 
 import socket
-from tkinter import *
+import tkinter as tk
 
 
 def theme(request, pkk):
@@ -69,10 +69,19 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
-    root = Tk()
 
-    monitor_height = root.winfo_screenheight()
-    monitor_width = root.winfo_screenwidth()
+    windoww = tk.Tk()
+
+    monitor_height = windoww.winfo_screenheight()
+    monitor_width = windoww.winfo_screenwidth()
+#    print(window.winfo_screenheight())
+    windoww.mainloop()
+
+#    root = Tk()
+
+#    monitor_height = root.winfo_screenheight()
+#    monitor_width = root.winfo_screenwidth()
+#    mainloop()
     mob = 0
     if monitor_width < 500:
         mob = 1
