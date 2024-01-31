@@ -7,7 +7,7 @@ from .models import Smailic
 from .models import Bpdf
 
 import socket
-from screeninfo import get_monitors
+#from screeninfo import get_monitors
 
 
 def theme(request, pkk):
@@ -69,14 +69,14 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
-    monitor = get_monitors()[0]
+#    monitor = get_monitors()[0]
 #    print('Width: %d, Height: %d' % (monitor.width, monitor.height))
-    monitor_width = monitor.width
+#    monitor_width = monitor.width
 #    print(window.winfo_screenheight())
 
     mob = 0
-    if monitor_width < 500:
-        mob = 1
+#    if monitor_width < 500:
+#        mob = 1
 
 
     tp = Topic.objects.get(pk=1)
