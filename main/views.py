@@ -113,9 +113,6 @@ def index(request):
         topr = topppp
 
 
-
-
-
     tpdf = Bpdf.objects.filter(exam_tip=e_tt).order_by('gkey')
 
 
@@ -194,6 +191,7 @@ def probls(request, pkkk, mm, e_tt):
             p.result_full = pp
 
     context = {
+       'e_tt': e_tt,
         'mm': mm,
         'tp': tp,
         'sm': sm,

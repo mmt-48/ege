@@ -228,7 +228,19 @@ padding: 10px;
   <h1 align="center"> Задачи  </h1>
   {% for t in topr %}
     <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
+
+    {%if  e_tt == 2 %}
      <h5  align="left">  {{forloop.counter}}. {{t.name_topic1}}</h5>
+    {%endif%}
+    {%if  e_tt == 3 %}
+      <h5  align="left">  {{forloop.counter}}. {{t.name_topic2}}</h5>
+    {%endif%}
+
+    {%if  e_tt == 4 %}
+          <h5  align="left">  {{forloop.counter}}. {{t.name_topic3}}</h5>
+
+    {%endif%}
+
     </a>
   {%endfor%}
   </div>

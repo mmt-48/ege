@@ -247,36 +247,50 @@ function setFocus()
 <body>
 {% autoescape off %}
 <div class="px_l">
-</h1> Задачи на тему</h1>
-</h1> {{tp.name_topic}}</h1>
-</div>
+ </h1> Задачи на тему</h1>
+
+ {%if  e_tt == 1 %}
+   </h1> {{tp.name_topic}}</h1>
+ {%endif%}
+ {%if  e_tt == 2 %}
+    </h1> {{tp.name_topic1}}</h1>
+  {%endif%}
+
+   {%if  e_tt == 3 %}
+     </h1> {{tp.name_topic2}}</h1>
+    {%endif%}
+
+    {%if  e_tt == 4 %}
+      </h1> {{tp.name_topic3}}</h1>
+    {%endif%}
+ </div>
 <p>
 <p>
 {% for b in bimgs %}
 
  {% for p in probls %}
-{%if p.school_class <= mm  %}
-<div class="px_l">
+   {%if p.school_class <= mm  %}
+     <div class="px_l">
 
-    <a>{{forloop.counter}}.</a>
-    <a>Внутренний код {{p.pk}}.</a>
-    <a>Номер в варианте {{p.number_task}}.</a>
+       <a>{{forloop.counter}}.</a>
+       <a>Внутренний код {{p.pk}}.</a>
+       <a>Номер в варианте {{p.number_task}}.</a>
 
-    <a>Год {{p.ege}}.</a>
-    <a>{{p.place_ege}}.</a>
-    <a>{{p.name_potok}}.</a>
-    <a>Источник {{p.source}}.</a>
-    <a>Класс {{p.school_class}}.</a>
+       <a>Год {{p.ege}}.</a>
+       <a>{{p.place_ege}}.</a>
+       <a>{{p.name_potok}}.</a>
+       <a>Источник {{p.source}}.</a>
+       <a>Класс {{p.school_class}}.</a>
 
-</div>
+     </div>
 
-<div class="px_l">
-    {%if p.condition_txt%}
-      <h4 align="left"> {{p.condition_txt }} </h4>
-    {%endif%}
-</div>
+     <div class="px_l">
+       {%if p.condition_txt%}
+         <h4 align="left"> {{p.condition_txt }} </h4>
+       {%endif%}
+     </div>
 
-    <div class="btn-group">
+     <div class="btn-group">
         {%if p.result%}
           <button style="height:40px;width:200px;border-radius:10px" onclick="showModalWinv({{forloop.counter}} , '{{p.result_full}}')">Проверить свой ответ</button>
         {%endif%}
@@ -320,10 +334,10 @@ function setFocus()
                 <input  type="button" style="font-size: 18pt" id="btnttt{{forloop.counter}}" value="Cancel">
             </form>
 
-        </div>
+         </div>
 
 <!-- Наше 3 модальное всплывающее окно -->
-        <div style="text-align: center" id="popupWinp{{forloop.counter}}" class="modalwin">
+         <div style="text-align: center" id="popupWinp{{forloop.counter}}" class="modalwin">
             <div><img src="{{sm.sm.url}}" width="150" alt="ll"></div>
             <h4> ПРАВИЛЬНО!!! </h4>
 
@@ -332,10 +346,10 @@ function setFocus()
                 <input type="button" style="font-size: 18pt" id="btntp{{forloop.counter}}" autofocus value="OK">
             </form>
 
-        </div>
+         </div>
 
 <!-- Наше 4 модальное всплывающее окно -->
-        <div style="text-align: center" id="popupWinn{{forloop.counter}}" autofocus class="modalwin">
+         <div style="text-align: center" id="popupWinn{{forloop.counter}}" autofocus class="modalwin">
             <div><img src="{{sm.ms.url}}" width="150" alt="ll"></div>
             <h4> НЕПРАВИЛЬНО !!! </h4>
 
@@ -344,11 +358,10 @@ function setFocus()
                 <input type="button" style="font-size: 18pt" id="btntn{{forloop.counter}}" value="OK">
             </form>
 
-        </div>
+         </div>
 
-
-{%endif%}
-  {%endfor%}
+      {%endif%}
+    {%endfor%}
 {%endfor%}
 
 {% endautoescape %}
