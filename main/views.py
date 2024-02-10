@@ -5,8 +5,8 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
-from ctypes import *
-import sys
+from tkinter import *
+
 import socket
 #from screeninfo import get_monitors
 
@@ -71,8 +71,7 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-    print(windll.user32.GetSystemMetrics(0))
-    print(windll.user32.GetSystemMetrics(1))
+    root = Tk()
 
 #    monitor = get_monitors()[0]
 #    print('Width: %d, Height: %d' % (monitor.width, monitor.height))
