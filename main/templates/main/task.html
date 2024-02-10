@@ -166,8 +166,18 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript">
+    function mwidth() {
+    const screenWidth = screen.width;
+const screenHeight = screen.height;
+
+console.log("Ширина экрана: " + screenWidth + "px");
+console.log("Высота экрана: " + screenHeight + "px");
+    }
+
+</script>
 <script type="text/javascript">
   function smw(t) {
                 var tt=900000+t;
@@ -191,6 +201,7 @@ MathJax.Hub.Config({
 
 </head>
 <body>
+
  {% autoescape off %}
  <div class="px_l">
 
@@ -204,6 +215,7 @@ MathJax.Hub.Config({
     <a>Источник {{tsk.source}}.</a>
     <a>Класс {{tsk.school_class}}.</a>
 
+<a>kkkk {{mwidth}}.</a>
 </div>
 
 <div class="px_l">
