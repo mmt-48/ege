@@ -5,7 +5,7 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
-from tkinter import *
+from screeninfo import get_monitors
 
 import socket
 #from screeninfo import get_monitors
@@ -71,7 +71,7 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-    root = Tk()
+
 
 #    monitor = get_monitors()[0]
 #    print('Width: %d, Height: %d' % (monitor.width, monitor.height))
