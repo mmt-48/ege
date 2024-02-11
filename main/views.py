@@ -71,8 +71,6 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-
-
 #    monitor = get_monitors()[0]
 #    print('Width: %d, Height: %d' % (monitor.width, monitor.height))
 #    monitor_width = monitor.width
