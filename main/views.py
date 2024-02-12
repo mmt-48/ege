@@ -8,7 +8,6 @@ from .models import Bpdf
 from screeninfo import get_monitors
 
 import socket
-#from screeninfo import get_monitors
 
 
 def theme(request, pkk):
@@ -71,14 +70,13 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-#    monitor = get_monitors()[0]
-#    print('Width: %d, Height: %d' % (monitor.width, monitor.height))
-#    monitor_width = monitor.width
-#    print(window.winfo_screenheight())
+    monitor = get_monitors()[0]
+
+    monitor_width = monitor.width
 
     mob = 0
-#    if monitor_width < 500:
-#        mob = 1
+    if monitor_width < 500:
+        mob = 1
 
 
     tp = Topic.objects.get(pk=1)
