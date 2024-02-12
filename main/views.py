@@ -70,9 +70,9 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-    monitor = get_monitors()[0]
+    #monitor = get_monitors()[0]
 
-    monitor_width = monitor.width
+    monitor_width = 100000 # monitor.width
 
     mob = 0
     if monitor_width < 500:
