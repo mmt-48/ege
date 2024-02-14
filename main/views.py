@@ -5,7 +5,7 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
-from screeninfo import get_monitors
+import tkinter as tk
 
 import socket
 
@@ -69,10 +69,8 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
-
-    #monitor = get_monitors()[0]
-
-    monitor_width = 100000 # monitor.width
+    root = tk.Tk()
+    monitor_width = root.winfo_screenwidth()
 
     mob = 0
     if monitor_width < 500:
