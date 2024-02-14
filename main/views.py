@@ -122,6 +122,7 @@ def index(request):
     m4 = [['ЕГЭ профиль', 1, 11], ['ЕГЭ база', 2, 11], ['ОГЭ (ГИА)', 3, 9], ['ДВИ (МГУ)', 4, 11]]
 
     context = {
+        'monitor_width': monitor_width,
         'm4': m4,
         'tpdf': tpdf,
         'v_r': v_r,
