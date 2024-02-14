@@ -5,6 +5,8 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
+import pygame
+
 
 import socket
 
@@ -68,15 +70,14 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
-    #app = QApplication(sys.argv)
-    #q = QDesktopWidget().availableGeometry()
+    pygame.init()
+    screen_info = pygame.display.Info()
 
-    monitor_width = 1000 #q.width()
+    monitor_width = screen_info.current_w
 
     mob = 0
     if monitor_width < 500:
         mob = 1
-
 
     tp = Topic.objects.get(pk=1)
     e_t = extip(request)
