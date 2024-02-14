@@ -5,7 +5,6 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
-import tkinter as tk
 
 import socket
 
@@ -69,8 +68,10 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
-    root = tk.Tk()
-    monitor_width = root.winfo_screenwidth()
+    #app = QApplication(sys.argv)
+    #q = QDesktopWidget().availableGeometry()
+
+    monitor_width = 1000 #q.width()
 
     mob = 0
     if monitor_width < 500:
