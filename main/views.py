@@ -7,7 +7,6 @@ from .models import Smailic
 from .models import Bpdf
 import pygame
 
-
 import socket
 
 
