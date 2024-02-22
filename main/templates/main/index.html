@@ -131,6 +131,42 @@ padding: 10px;
 
 </head>
 <body>
+<script>
+    var myMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i);
+        },
+        any: function() {
+            return (myMobile.Android() ||
+                    myMobile.BlackBerry() ||
+                    myMobile.iOS() ||
+                    myMobile.Opera() ||
+                    myMobile.Windows());
+        }
+    };
+
+    if( myMobile.any() ) {
+      // это мобильник - делаем что-то
+    }
+</script>
+
+
+
+
+
+
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -195,7 +231,7 @@ padding: 10px;
 {%if v_r == 1%}
  {%if  e_tt == 1 %}
   <div class="px_l" style="background-color: LightBlue">
-   <h1 align="center"> Задачи базовой сложности </h1>
+   <h2 align="center"> Задачи базовой сложности </h2>
    {% for t in topp1 %}
     <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt%}">
      <h5 align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
@@ -205,7 +241,7 @@ padding: 10px;
   <p>
   <p>
   <div class="px_l" style="background-color: LightBlue">
-   <h1 align="center"> Задачи стандартной  сложности </h1>
+   <h2 align="center"> Задачи стандартной  сложности </h2>
 
    {% for t in topp2 %}
     <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
@@ -216,7 +252,7 @@ padding: 10px;
   <p>
   <p>
    <div class="px_l" style="background-color: LightBlue">
-    <h1 align="center"> Задачи повышенной сложности </h1>
+    <h2 align="center"> Задачи повышенной сложности </h2>
     {% for t in topp3 %}
      <a  style="text-decoration: none;" href="{% url 'probls' t.pk mm e_tt %}">
       <h5  align="left">  {{forloop.counter}}. {{t.name_topic}}</h5>
