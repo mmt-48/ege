@@ -72,13 +72,13 @@ body::before {
 </head>
 <body>
 <div class="px_l" style="background-color: LightBlue">
-<h1 align="center">Темы, знание которых необходимо при решении этой задачи</h1>
+<h2 align="center">Темы, знание которых необходимо при решении этой задачи</h2>
 </div>
 {% autoescape off %}
  {% for t in thm %}
 
    <div class="px_l" style="background-color: LightBlue">
-    <h1>Тема {{forloop.counter}}. {{t|slice:":100"}} </h1>
+    <h3>Тема {{forloop.counter}}. {{t|slice:":100"}} </h3>
     <h4> {{t|slice:"100:"}} </h4>
    </div>
 
