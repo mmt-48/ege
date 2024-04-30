@@ -112,7 +112,7 @@ def index(request):
         topr = topppp
 
 
-    tpdf = Bpdf.objects.filter(exam_tip=e_tt).order_by('gkey')
+    tpdf = Bpdf.objects.filter(exam_tip=e_tt).order_by('-gkey')
 
 
     for p in tpdf:
