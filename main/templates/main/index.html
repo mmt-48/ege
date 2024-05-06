@@ -131,40 +131,6 @@ padding: 10px;
 
 </head>
 <body>
-<script>
-    var myMobile = {
-        Android: function() {
-            return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function() {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function() {
-            return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function() {
-            return navigator.userAgent.match(/IEMobile/i);
-        },
-        any: function() {
-            return (myMobile.Android() ||
-                    myMobile.BlackBerry() ||
-                    myMobile.iOS() ||
-                    myMobile.Opera() ||
-                    myMobile.Windows());
-        }
-    };
-
-    if( myMobile.any() ) {
-      // это мобильник - делаем что-то
-    }
-</script>
-
-
-
-
 
 
 <!-- Yandex.Metrika counter -->
@@ -185,10 +151,11 @@ padding: 10px;
 <!-- /Yandex.Metrika counter -->
 <div class="px_l" style="background-color: LightBlue">
 <h3 align="center">Задачи из реальных вариантов экзаменов по математике (ЕГЭ-базовый и профильный уровни, ОГЭ, ДВИ) c 2010 по настоящее время. </h3>
-{%if mob == 1%}
-    <h3 align="center">Мобильная версия </h3>
- {%endif%}
-    <h3 align="center">Разрешение{{monitor_width}} </h3>
+
+
+    <h3 align="center">{{mob}} </h3>
+ <h3 align="center">{{mob1}} </h3>
+
 </div>
     <p>
 

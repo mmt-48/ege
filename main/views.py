@@ -5,8 +5,9 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
+import os
 import pygame
-
+import sys
 import socket
 
 
@@ -69,6 +70,7 @@ def variant(request, pkk, e_tt):
 
 
 def index(request):
+
     pygame.init()
     screen_info = pygame.display.Info()
 
@@ -77,6 +79,9 @@ def index(request):
     mob = 0
     if monitor_width < 500:
         mob = 1
+
+    mob = os.name
+    mob1 = sys.platform
 
     tp = Topic.objects.get(pk=1)
     e_t = extip(request)
@@ -128,6 +133,7 @@ def index(request):
         'tp': tp,
         'mm': mm,
         'mob': mob,
+        'mob1': mob1,
         'e_tt': e_tt,
         'm6_11': m6_11,
         'topr': topr,
