@@ -9,7 +9,7 @@ import os
 import pygame
 import sys
 import socket
-
+import re
 
 def theme(request, pkk):
     prb = Probl.objects.get(pk=pkk)
@@ -80,7 +80,12 @@ def index(request):
     if monitor_width < 500:
         mob = 1
 
-    mob = os.name
+    if mobile(request):
+        mob = 'телефон'
+    else:
+        mob='ПС'
+
+
     mob1 = sys.platform
 
     tp = Topic.objects.get(pk=1)
@@ -422,3 +427,13 @@ def exvarsad(request):
         m = u[k + 7:k + 8]
 
     return m
+
+
+def mobile(request):
+
+    MOBILE_AGENT_RE=re.compile(r".*(iphone|mobile|androidtouch)",re.IGNORECASE)
+
+    if MOBILE_AGENT_RE.match(request.META['HTTP_USER_AGENT']):
+        return True
+    else:
+        return False
