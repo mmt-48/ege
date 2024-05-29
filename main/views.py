@@ -5,8 +5,7 @@ from .models import Bimg
 from .models import Themes
 from .models import Smailic
 from .models import Bpdf
-import os
-import pygame
+
 import sys
 import socket
 import re
@@ -33,6 +32,7 @@ def theme(request, pkk):
 
 
 def variant(request, pkk, e_tt):
+    mp = mobile(request)
     sm = Smailic.objects.get(pk=1)
 
     prb = Bpdf.objects.get(pk=pkk)
@@ -50,6 +50,13 @@ def variant(request, pkk, e_tt):
             thm.append(u)
 
     for p in thm:
+        uslt = p.condition_txt
+        if mp:
+            uslt = udtexld('p', uslt)
+        else:
+            uslt = udtexld('m', uslt)
+        p.condition_txt = uslt
+
         p.ege = p.gkey[0:4]
         p.place_ege = name_zone(zone(p.gkey))
         p.name_potok = name_potok(potok(p.gkey))
@@ -71,22 +78,10 @@ def variant(request, pkk, e_tt):
 
 def index(request):
 
-    pygame.init()
-    screen_info = pygame.display.Info()
-
-    monitor_width = screen_info.current_w
-
-    mob = 0
-    if monitor_width < 500:
-        mob = 1
-
     if mobile(request):
         mob = 'телефон'
     else:
-        mob='ПС'
-
-
-    mob1 = sys.platform
+        mob = 'ПС'
 
     tp = Topic.objects.get(pk=1)
     e_t = extip(request)
@@ -131,14 +126,12 @@ def index(request):
     m4 = [['ЕГЭ профиль', 1, 11], ['ЕГЭ база', 2, 11], ['ОГЭ (ГИА)', 3, 9], ['ДВИ (МГУ)', 4, 11]]
 
     context = {
-        'monitor_width': monitor_width,
         'm4': m4,
         'tpdf': tpdf,
         'v_r': v_r,
         'tp': tp,
         'mm': mm,
         'mob': mob,
-        'mob1': mob1,
         'e_tt': e_tt,
         'm6_11': m6_11,
         'topr': topr,
@@ -190,7 +183,17 @@ def probls(request, pkkk, mm, e_tt):
 
     sm = Smailic.objects.get(pk=1)
 
+    mp = mobile(request)
+
     for p in pr:
+        uslt = p.condition_txt
+        if mp:
+            uslt = udtexld('p', uslt)
+        else:
+            uslt = udtexld('m', uslt)
+
+        p.condition_txt = uslt
+
         p.ege = p.gkey[0:4]
         p.place_ege = name_zone(zone(p.gkey))
         p.name_potok = name_potok(potok(p.gkey))
@@ -220,6 +223,16 @@ def task(request, pkk):
 
     tsk = Probl.objects.get(pk=pkk)
     tp = Topic.objects.get(pk=tsk.topic_id)
+
+    uslt = tsk.condition_txt
+    if mobile(request):
+        uslt = udtexld('p', uslt)
+    else:
+        uslt = udtexld('m', uslt)
+
+    tsk.condition_txt = uslt
+
+
     ps = 0
     if 'onclick="smw(' in tsk.solution_txt:
           ps = 1
@@ -437,3 +450,36 @@ def mobile(request):
         return True
     else:
         return False
+
+
+def udtexld(a, b):
+    res = b
+    while ('~('+a) in res:
+        l0 = res.find('~('+a)
+
+        l1 = b.find('~)', l0, len(res))+2
+
+        subs = res[l0:l1]
+
+        res = res.replace(subs, '', 1)
+
+    while '~(' in res:
+        l0 = res.find('~(')
+
+        l1 = l0+3
+
+        subs = res[l0:l1]
+
+        res = res.replace(subs, '', 1)
+
+    while '~)' in res:
+        l0 = res.find('~)')
+
+        l1 = l0+2
+
+        subs = res[l0:l1]
+
+        res = res.replace(subs, '', 1)
+
+    return res
+
