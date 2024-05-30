@@ -224,13 +224,28 @@ def task(request, pkk):
     tsk = Probl.objects.get(pk=pkk)
     tp = Topic.objects.get(pk=tsk.topic_id)
 
+    mp = mobile(request)
+
+
     uslt = tsk.condition_txt
-    if mobile(request):
+    if mp:
         uslt = udtexld('p', uslt)
     else:
         uslt = udtexld('m', uslt)
 
     tsk.condition_txt = uslt
+
+    uslt = tsk.solution_txt
+
+    if mp:
+        uslt = udtexld('p', uslt)
+    else:
+        uslt = udtexld('m', uslt)
+
+    tsk.solution_txt = uslt
+
+
+
 
 
     ps = 0
@@ -456,9 +471,7 @@ def udtexld(a, b):
     res = b
     while ('~('+a) in res:
         l0 = res.find('~('+a)
-
-        l1 = b.find('~)', l0, len(res))+2
-
+        l1 = res.find('~)', l0)+2
         subs = res[l0:l1]
 
         res = res.replace(subs, '', 1)
@@ -469,7 +482,7 @@ def udtexld(a, b):
         l1 = l0+3
 
         subs = res[l0:l1]
-
+        print(2, subs)
         res = res.replace(subs, '', 1)
 
     while '~)' in res:
@@ -478,7 +491,7 @@ def udtexld(a, b):
         l1 = l0+2
 
         subs = res[l0:l1]
-
+        print(3, subs)
         res = res.replace(subs, '', 1)
 
     return res
