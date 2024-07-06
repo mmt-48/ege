@@ -244,10 +244,6 @@ def task(request, pkk):
 
     tsk.solution_txt = uslt
 
-
-
-
-
     ps = 0
     if 'onclick="smw(' in tsk.solution_txt:
           ps = 1
